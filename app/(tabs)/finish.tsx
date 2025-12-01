@@ -1,6 +1,4 @@
 import {StyleSheet, ScrollView, Text, TouchableOpacity, View} from "react-native";
-import {Ionicons} from '@expo/vector-icons';
-import Slider from '@react-native-community/slider';
 
 export default function Finish() {
     return (
