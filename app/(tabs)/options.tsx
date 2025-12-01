@@ -1,0 +1,62 @@
+import {StyleSheet, ScrollView, Text, TouchableOpacity, View} from "react-native";
+import {Ionicons} from '@expo/vector-icons';
+import Slider from '@react-native-community/slider';
+
+export default function Options() {
+    return (
+        <ScrollView>
+            <TouchableOpacity>
+                <Ionicons name="arrow-back-outline" size={64} style={{padding: 10,}}/>
+            </TouchableOpacity>
+            <ScrollView>
+                <View style={styles.sliderContainer}>
+                    <Ionicons name="volume-high-outline" size={64}/>
+                    <Slider
+                        style={{width: 250, height: 64}}
+                        minimumValue={0}
+                        maximumValue={1}
+                        minimumTrackTintColor="#FFFFFF"
+                        maximumTrackTintColor="#000000"
+                    />
+                </View >
+                <View style={styles.sliderContainer}>
+                    <Ionicons name="musical-notes-outline" size={64}/>
+                    <Slider
+                        style={{width: 250, height: 64}}
+                        minimumValue={0}
+                        maximumValue={1}
+                        minimumTrackTintColor="#FFFFFF"
+                        maximumTrackTintColor="#000000"
+                    />
+                </View>
+                <Text style={styles.titleText}>Impressum</Text>
+                <Text style={styles.bodyText}>
+                    Lorem ipsum dolor sit amet,
+                    consetetur sadipscing elitr,
+                    sed diam nonumy eirmod tempor invidunt ut
+                    labore et dolore magna aliquyam
+                </Text>
+            </ScrollView>
+
+
+        </ScrollView>
+    );
+}
+
+const styles = StyleSheet.create({
+    sliderContainer: {
+        flexDirection: 'row',
+        padding: 40,
+        justifyContent: "center",
+    },
+    titleText: {
+        fontSize:48,
+        alignSelf: "flex-start",
+        padding: 10
+    },
+    bodyText: {
+        fontSize:20,
+        alignSelf: "flex-start",
+        padding: 10
+    }
+});
