@@ -3,36 +3,32 @@ import { View, Text, StyleSheet, ScrollView } from 'react-native';
 
 export default function PixelItScreen() {
   return (
-    <ScrollView contentContainerStyle={styles.container}>
-      <Text style={styles.title}>Oskar <Text style={styles.pixel}>pixelt!</Text></Text>
-
-      <View style={styles.timerBubble}>
-        <Text style={styles.timerText}>Noch 12s</Text>
-      </View>
-
+    <ScrollView contentContainerStyle={styles.container} >
+    <View style={[
+        styles.container,{
+          flexDirection:'row'
+        }
+      ]}>
+        <Text style={styles.title}>SpielerIn pixelt!</Text>
+        <Text style={styles.timerBubble}> <Text style={styles.timerText}>12s</Text></Text>
+    </View>
       <View style={styles.gridContainer}>
-        {[...Array(11)].map((_, rowIdx) => (
+        {[...Array(8)].map((_, rowIdx) => (
           <View key={rowIdx} style={styles.gridRow}>
-            {[...Array(11)].map((_, colIdx) => {
-              return (
-                <View
-                  key={colIdx}
-                  style={[styles.cell]}
-                />
-              );
+            {[...Array(8)].map((_, colIdx) => {
+              return ( <View key={colIdx} style={[styles.cell]}/>);
             })}
           </View>
         ))}
       </View>
-
       <View style={styles.palette}>
         <View style={styles.paletteRow}>
-          {['#ff0000','#ff7a00','#ffe600','#4dff00','#00e5ff','#0066ff','#d400ff'].map((c,i)=>(
+          {['#000000','#1d2b53','#7e2553','#008751','#ab5236','#5f574f','#c2c3c7','#fff1e8'].map((c,i)=>(
             <View key={i} style={[styles.colorBox,{backgroundColor:c}]} />
           ))}
         </View>
         <View style={styles.paletteRow}>
-          {['#2b2a2a','#000000','#3e3e3e','#7e7e7e','#b4b4b4','#d9d9d9','#ffffff'].map((c,i)=>(
+          {['#ff003d','#ffa300','#ffec27','#00e436','#29adff','#83769c','#ff77a8','#ffccaa'].map((c,i)=>(
             <View key={i} style={[styles.colorBox,{backgroundColor:c}]} />
           ))}
         </View>
@@ -52,16 +48,14 @@ export default function PixelItScreen() {
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
-    paddingVertical: 30,
+    paddingVertical: 5,
     backgroundColor: '#ffffff'
   },
   title: {
     fontSize: 32,
     fontWeight: '800',
-    marginBottom: 20
-  },
-  pixel: {
-    color: '#7a42f4'
+    marginBottom: 20,
+    color:'#000066'
   },
   timerBubble: {
     backgroundColor: '#e7e7e7',
@@ -85,8 +79,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row'
   },
   cell: {
-    width: 32,
-    height: 32,
+    width: 44,
+    height: 44,
     borderWidth: 1,
     borderColor: '#bcbcbc',
     backgroundColor: '#d9d9d9'
