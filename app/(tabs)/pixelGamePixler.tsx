@@ -35,7 +35,7 @@ export default function PixelPixlerScreen() {
             </View>
 
             <View style={styles.ratebox}>
-                <Text style={styles.rateTitle}>Lösungsvorschläge</Text>
+                <Text style={styles.rateTitle}>Ratebox</Text>
                 <Text style={styles.guess}><Text style={styles.bold}>Lukas:</Text> Wald</Text>
                 <Text style={styles.guess}><Text style={styles.bold}>Nele:</Text> Rose</Text>
                 <Text style={styles.guess}><Text style={styles.bold}>Lukas:</Text> Baum</Text>
