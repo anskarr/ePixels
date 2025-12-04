@@ -1,4 +1,4 @@
-import MainMenu from "./MainMenu";
+import MainMenu from "./index";
 
 export default function RootLayout() {
   return <MainMenu />;

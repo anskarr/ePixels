@@ -51,7 +51,7 @@ export default function LobbyHost() {
     <View style={styles.container}>
       {/* Header */}
       <View style={styles.header}>
-        <TouchableOpacity onPress={() => router.push("/")}>
+        <TouchableOpacity onPress={() => router.push("./")}>
           <Text style={styles.leave}>◀ Verlassen</Text>
         </TouchableOpacity>
       </View>

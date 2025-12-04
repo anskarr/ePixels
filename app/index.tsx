@@ -1,21 +1,13 @@
 import React, { useState } from "react";
-import {
-  SafeAreaView,
-  View,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  StyleSheet,
-  Dimensions,
-  Alert,
-  StatusBar,
-} from "react-native";
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Dimensions, Alert, StatusBar, } from "react-native";
+import {useRouter} from 'expo-router'
 
 const { width } = Dimensions.get("window");
 
 export default function HomeScreen() {
   const [name, setName] = useState("");
   const [lobbyCode, setLobbyCode] = useState("");
+  const router = useRouter();
 
   const onPlay = () => {
     Alert.alert("Fehlender Name", `Spielername darf nicht leer sein!`);
@@ -30,11 +22,11 @@ export default function HomeScreen() {
   };
 
   const onBurger = () => {
-    Alert.alert("Optionen", "Herzlichen Glühstrumpf, du hast einen Knopf gedrückt.");
+      router.navigate('/options')
   };
 
   return (
-    <SafeAreaView style={styles.safe}>
+    <View style={styles.safe}>
       <StatusBar barStyle="dark-content" />
       {/* Top line + burger */}
       <View style={styles.topRow}>
@@ -112,7 +104,7 @@ export default function HomeScreen() {
           <Text style={styles.blueButtonText}>Privatem Raum beitreten</Text>
         </TouchableOpacity>
       </View>
-    </SafeAreaView>
+    </View>
   );
 }
 
