@@ -1,6 +1,9 @@
 import {StyleSheet, ScrollView, Text, TouchableOpacity, View} from "react-native";
+import { useRouter } from "expo-router";
 
 export default function Finish() {
+    const router = useRouter();
+
     return (
         <View>
             <View style={styles.topContainer}>
@@ -15,8 +18,8 @@ export default function Finish() {
                 </View>
             </ScrollView>
             <View style={styles.bottomContainer}>
-                <TouchableOpacity style={styles.playAgainContainer}>
-                    <Text style={styles.playAgainText}>Play Again?</Text>
+                <TouchableOpacity onPress={() => router.navigate("./")} style={styles.playAgainContainer}>
+                    <Text style={styles.playAgainText}>Zurück zum Menü!</Text>
                 </TouchableOpacity>
             </View>
         </View>
