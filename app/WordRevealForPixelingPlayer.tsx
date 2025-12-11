@@ -1,19 +1,15 @@
 import React from 'react';
-import { StyleSheet, Text, View, SafeAreaView, Dimensions } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 
-// Typen für die Props (falls du diese Screen-Komponente von woanders aufrufst)
-interface DrawScreenProps {
-  wordToDraw: string;
-  partnerName: string;
-}
 
-const DrawScreen: React.FC<DrawScreenProps> = ({
-  wordToDraw = "Apfel",    // Standardwert: Variable für das Wort
-  partnerName = "Frederick" // Standardwert: Variable für den Namen
-}) => {
+
+export default function DrawScreen() {
+    const wordToDraw = "Apfel"
+    const partnerName = "Frederick"
+
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <StatusBar style="auto" />
 
       {/* Oberer Bereich: Du bist dran */}
@@ -44,7 +40,7 @@ const DrawScreen: React.FC<DrawScreenProps> = ({
           </Text>
         </View>
       </View>
-    </SafeAreaView>
+    </View>
   );
 };
 
@@ -53,7 +49,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'space-evenly', // Verteilt die Elemente gleichmäßig vertikal
+    justifyContent: 'space-evenly',
     paddingHorizontal: 20,
   },
   section: {
@@ -65,7 +61,7 @@ const styles = StyleSheet.create({
     fontWeight: '400',
     textAlign: 'center',
     color: '#000',
-    lineHeight: 40, // Für besseren Abstand bei Zeilenumbruch
+    lineHeight: 40,
   },
   labelText: {
     fontSize: 28,
@@ -77,16 +73,16 @@ const styles = StyleSheet.create({
   wordText: {
     fontSize: 36,
     fontWeight: '500',
-    color: '#2b9bb8', // Blau-Ton ähnlich dem Screenshot (Apfel)
+    color: '#2b9bb8',
     textAlign: 'center',
   },
   nameBadge: {
-    backgroundColor: '#a3c9d3', // Hellblauer Hintergrund (Frederick)
+    backgroundColor: '#a3c9d3',
     paddingVertical: 10,
     paddingHorizontal: 40,
-    borderRadius: 25, // Rundung für den "Pill"-Look
+    borderRadius: 25,
     marginTop: 10,
-    minWidth: 200, // Mindestbreite damit es gut aussieht
+    minWidth: 200,
     alignItems: 'center',
   },
   nameText: {
@@ -96,5 +92,3 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
 });
-
-export default DrawScreen;

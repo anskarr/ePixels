@@ -44,7 +44,7 @@ export default function LobbyHost() {
       Alert.alert("Mindestens 2 Spieler benötigt");
       return;
     }
-    router.push("./game-start");
+    router.push("./WordRevealForPixelingPlayer");
   };
 
   return (

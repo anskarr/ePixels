@@ -1,10 +1,10 @@
 import React from 'react';
-import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 
-const GuessScreen: React.FC = () => {
+export default function GuessScreen(){
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <StatusBar style="auto" />
 
       <View style={styles.contentContainer}>
@@ -18,7 +18,7 @@ const GuessScreen: React.FC = () => {
         </Text>
       </View>
 
-    </SafeAreaView>
+    </View>
   );
 };
 
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
   contentContainer: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center', // Zentriert den Text vertikal und horizontal
+    justifyContent: 'center',
     paddingHorizontal: 20,
   },
   text: {
@@ -40,15 +40,13 @@ const styles = StyleSheet.create({
     color: '#000',
     lineHeight: 40,
   },
-  // Style für den neuen Erklärungstext
+
   descriptionText: {
     fontSize: 20,
-    fontWeight: '300', // Etwas leichter/dünner als die Überschrift
+    fontWeight: '300',
     textAlign: 'center',
-    color: '#333', // Ein dunkles Grau sieht oft eleganter aus als reines Schwarz für Fließtext
-    marginTop: "17.5%", // Abstand zur Überschrift
-    lineHeight: 26, // Gute Lesbarkeit bei mehrzeiligem Text
+    color: '#333',
+    marginTop: "17.5%",
+    lineHeight: 26,
   },
 });
-
-export default GuessScreen;

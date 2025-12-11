@@ -1,11 +1,14 @@
 import {StyleSheet, ScrollView, Text, TouchableOpacity, View} from "react-native";
 import {Ionicons} from '@expo/vector-icons';
+import {useRouter} from 'expo-router';
 import Slider from '@react-native-community/slider';
 
 export default function Options() {
+    const router = useRouter();
+
     return (
         <ScrollView>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => router.back()} >
                 <Ionicons name="arrow-back-outline" size={64} style={{padding: 10,}}/>
             </TouchableOpacity>
             <ScrollView>

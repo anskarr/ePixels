@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Dimensions, Alert, StatusBar, } from "react-native";
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Dimensions, StatusBar, } from "react-native";
 import {useRouter} from 'expo-router'
 
 const { width } = Dimensions.get("window");
@@ -10,15 +10,15 @@ export default function HomeScreen() {
   const router = useRouter();
 
   const onPlay = () => {
-    Alert.alert("Fehlender Name", `Spielername darf nicht leer sein!`);
+      router.navigate('./LobbyUser')
   };
 
   const onCreateRoom = () => {
-    Alert.alert("Raum erstellen", "Das ist aktuell nicht möglich!");
+      router.navigate('./LobbyHost')
   };
 
   const onJoinRoom = () => {
-    Alert.alert("Fehlender Code", `Lobby Code darf nicht leer sein!`);
+      router.navigate('./LobbyUser')
   };
 
   const onBurger = () => {
