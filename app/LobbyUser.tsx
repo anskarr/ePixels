@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import {
     View,
     Text,
@@ -8,7 +8,7 @@ import {
     FlatList,
     Alert,
 } from "react-native";
-import {useRouter} from "expo-router";
+    import { useRouter } from "expo-router";
 
 export default function LobbyUser() {
     const router = useRouter();
@@ -41,6 +41,13 @@ export default function LobbyUser() {
 
         setPlayers(prev => [...prev, name]);
         setNewPlayerName("");
+    };
+
+    const startGame = () => {
+        if (players.length < maxPlayers) {
+            return;
+        }
+        router.push("./WordRevealForPixelingPlayer");
     };
 
     return (
@@ -79,12 +86,12 @@ export default function LobbyUser() {
                         data={players}
                         keyExtractor={(item, index) => `${item}-${index}`}
                         style={styles.playerList}
-                        renderItem={({item}) => (
+                        renderItem={({ item }) => (
                             <View style={styles.playerRow}>
                                 <Text style={styles.playerText}>{item}</Text>
                             </View>
                         )}
-                        ItemSeparatorComponent={() => <View style={{height: 8}}/>}
+                        ItemSeparatorComponent={() => <View style={{ height: 8 }} />}
                     />
 
                     {/* + Pixler direkt unter der Liste */}
@@ -103,11 +110,24 @@ export default function LobbyUser() {
                         </View>
                     )}
 
-                    {/* Waiting */}
+                    {/* START BUTTON */}
                     <View style={styles.footer}>
-                        <View style={styles.waitBox}>
-                            <Text style={styles.waitText}>Warten auf Host…</Text>
-                        </View>
+                        <TouchableOpacity
+                            style={[
+                                styles.startButton,
+                                players.length >= maxPlayers
+                                    ? styles.startReady
+                                    : styles.startNotReady
+                            ]}
+                            disabled={players.length < maxPlayers}
+                            onPress={startGame}
+                        >
+                            <Text style={styles.startButtonText}>
+                                {players.length >= maxPlayers
+                                    ? "Spiel starten (Nur in dieser Simulation möglich. Button simuliert den Host.)"
+                                    : "Warten auf Pixler..."}
+                            </Text>
+                        </TouchableOpacity>
                     </View>
                 </>
             )}
@@ -116,15 +136,15 @@ export default function LobbyUser() {
 }
 
 const styles = StyleSheet.create({
-    container: {flex: 1, paddingTop: 40, alignItems: "center", backgroundColor: "#FAFAFA"},
-    header: {width: "90%", alignItems: "flex-start"},
-    leave: {color: "#357ABD", fontSize: 16},
+    container: { flex: 1, paddingTop: 40, alignItems: "center", backgroundColor: "#FAFAFA" },
+    header: { width: "90%", alignItems: "flex-start" },
+    leave: { color: "#357ABD", fontSize: 16 },
 
-    title: {fontSize: 28, fontWeight: "700", marginTop: 6},
-    sub: {marginTop: 8, fontSize: 16},
-    code: {color: "#357ABD", fontSize: 18, marginBottom: 12},
+    title: { fontSize: 28, fontWeight: "700", marginTop: 6 },
+    sub: { marginTop: 8, fontSize: 16 },
+    code: { color: "#357ABD", fontSize: 18, marginBottom: 12 },
 
-    centerBox: {width: "80%", marginTop: 20},
+    centerBox: { width: "80%", marginTop: 20 },
     input: {
         width: "100%",
         backgroundColor: "#E6E6E6",
@@ -138,9 +158,9 @@ const styles = StyleSheet.create({
         padding: 12,
         borderRadius: 10,
     },
-    primaryButtonText: {color: "white", textAlign: "center", fontSize: 16},
+    primaryButtonText: { color: "white", textAlign: "center", fontSize: 16 },
 
-    playerList: {width: "85%", marginTop: 6, maxHeight: 300},
+    playerList: { width: "85%", marginTop: 6, maxHeight: 300 },
 
     playerRow: {
         backgroundColor: "#E8F2FA",
@@ -148,13 +168,17 @@ const styles = StyleSheet.create({
         paddingHorizontal: 14,
         borderRadius: 10,
     },
-    playerText: {fontSize: 18, textAlign: "left"},
+    playerText: { fontSize: 18, textAlign: "left" },
 
-    addBox: {width: "80%", marginTop: 12},
-    ghostButton: {paddingVertical: 10, alignItems: "center"},
-    ghostButtonText: {color: "#357ABD", fontSize: 16},
+    addBox: { width: "80%", marginTop: 12 },
+    ghostButton: { paddingVertical: 10, alignItems: "center" },
+    ghostButtonText: { color: "#357ABD", fontSize: 16 },
 
-    footer: {width: "80%", marginTop: 12},
-    waitBox: {padding: 14, borderRadius: 12, backgroundColor: "#999"},
-    waitText: {color: "white", textAlign: "center", fontSize: 16},
+    footer: { width: "80%", marginTop: 12 },
+
+    /* START BUTTON */
+    startButton: { padding: 14, borderRadius: 12 },
+    startReady: { backgroundColor: "green" },
+    startNotReady: { backgroundColor: "#999" },
+    startButtonText: { color: "white", textAlign: "center", fontSize: 16 },
 });
