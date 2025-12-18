@@ -8,7 +8,7 @@ export default function GuessScreen() {
 
     useEffect(() => {
         const timer = setTimeout(() => {
-            router.navigate('./pixelGamePixler')
+            router.navigate('./pixelGameGuesser')
         }, 4000)
 
         return () => clearTimeout(timer);
@@ -25,8 +25,9 @@ export default function GuessScreen() {
 
                 {/* Neuer Erklärungstext */}
                 <Text style={styles.descriptionText}>
-                    Deine Gegner malen ein bestimmtes Wort nach. Versuche dieses Wort zu erraten, bevor der Timer
-                    abläuft. Los geht's!
+                    Deine Gegner malen ein bestimmtes Wort nach.
+                    Errate das Wort, bevor der Timer abläuft.
+                    Los geht's!
                 </Text>
             </View>
 

@@ -5,7 +5,6 @@ import {useRouter} from 'expo-router'
 const { width } = Dimensions.get("window");
 
 export default function HomeScreen() {
-  const [name, setName] = useState("");
   const [lobbyCode, setLobbyCode] = useState("");
   const router = useRouter();
 
@@ -48,16 +47,6 @@ export default function HomeScreen() {
       </View>
 
       <View style={styles.content}>
-        {/* Name Input */}
-        <TextInput
-          style={styles.input}
-          placeholder="Namen eingeben"
-          placeholderTextColor="#222"
-          value={name}
-          onChangeText={setName}
-          accessibilityLabel="Namen eingeben"
-          returnKeyType="done"
-        />
 
         {/* PLAY button (grün) */}
         <TouchableOpacity
