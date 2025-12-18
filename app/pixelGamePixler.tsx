@@ -4,6 +4,9 @@ import {ScrollView, StyleSheet, Text, View} from 'react-native';
 export default function PixelPixlerScreen() {
     return (
         <ScrollView contentContainerStyle={styles.container}>
+            <View>
+                <Text style={styles.title}>Runde 1</Text>
+            </View>
             <View style={[
                 styles.container, {
                     flexDirection: 'row'
@@ -36,10 +39,10 @@ export default function PixelPixlerScreen() {
 
             <View style={styles.ratebox}>
                 <Text style={styles.rateTitle}>Ratebox</Text>
-                <Text style={styles.guess}><Text style={styles.bold}>Lukas:</Text> Wald</Text>
-                <Text style={styles.guess}><Text style={styles.bold}>Nele:</Text> Rose</Text>
-                <Text style={styles.guess}><Text style={styles.bold}>Lukas:</Text> Baum</Text>
-                <Text style={styles.guess}><Text style={styles.bold}>Lukas:</Text> Blume</Text>
+                <Text style={styles.guess}><Text style={styles.big}>Lukas:</Text> Wald</Text>
+                <Text style={styles.guess}><Text style={styles.big}>Nele:</Text> Rose</Text>
+                <Text style={styles.guess}><Text style={styles.big}>Lukas:</Text> Baum</Text>
+                <Text style={styles.guess}><Text style={styles.big}>Lukas:</Text> Blume</Text>
             </View>
         </ScrollView>
     );
@@ -54,12 +57,11 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 24,
         fontWeight: '800',
-        margin: 8,
         color: '#000066'
     },
     timerBubble: {
         backgroundColor: '#e7e7e7',
-        margin: 8,
+        margin: 4,
         padding: 8,
         borderRadius: 20,
     },
@@ -118,7 +120,7 @@ const styles = StyleSheet.create({
         fontSize: 16,
         marginVertical: 2
     },
-    bold: {
+    big: {
         fontWeight: '700'
     }
 });
