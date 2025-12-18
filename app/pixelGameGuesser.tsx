@@ -13,6 +13,7 @@ export default function PixelGuesserScreen() {
                 }
             ]}>
                 <Text style={styles.title}>SpielerIn pixelt!</Text>
+                <Text style={styles.title}>Runde 1</Text>
                 <Text style={styles.timerBubble}> <Text style={styles.timerText}>12s</Text></Text>
             </View>
             <View style={styles.gridContainer}>
