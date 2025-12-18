@@ -24,6 +24,10 @@ export default function HomeScreen() {
       router.navigate('/options')
   };
 
+  const onTutorial = () => {
+      router.navigate('/tutorial')
+  };
+
   return (
     <View style={styles.safe}>
       <StatusBar barStyle="dark-content" />
@@ -47,6 +51,15 @@ export default function HomeScreen() {
       </View>
 
       <View style={styles.content}>
+
+        <TouchableOpacity
+            style={styles.redButton}
+            onPress={onTutorial}
+            accessibilityRole="button"
+            accessibilityLabel="Tutorial ansehen"
+        >
+          <Text style={styles.redButtonText}>Tutorial</Text>
+        </TouchableOpacity>
 
         {/* PLAY button (grün) */}
         <TouchableOpacity
@@ -152,7 +165,7 @@ const styles = StyleSheet.create({
 
   input: {
     width: Math.min(width - 80, 360),
-    height: 40,
+    height: 50,
     borderRadius: 18,
     borderWidth: 2,
     borderColor: "#000",
@@ -169,7 +182,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     justifyContent: "center",
     alignItems: "center",
-    marginVertical: 30,
+    marginVertical: "3%",
     // leichter Schatten (iOS/Android)
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
@@ -192,7 +205,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     justifyContent: "center",
     alignItems: "center",
-    marginBottom: "29%",
+    marginBottom: "15%",
     paddingHorizontal: 10,
   },
   blueButtonText: {
@@ -201,11 +214,31 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
 
+  redButton: {
+    width: Math.min(width - 80, 360),
+    minWidth: 180,
+    height: 50,
+    backgroundColor: '#ff8000',
+    borderRadius: 12,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: "1%",
+    paddingHorizontal: 10,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.15,
+    shadowRadius: 2,
+    elevation: 3,
+  },
+  redButtonText: {
+    fontSize: 24,
+  },
+
   lobbyRow: {
     flexDirection: "row",
     alignItems: "center",
-    marginTop: "12%",
-    marginBottom: "5.5%",
+    marginTop: "1%",
+    marginBottom: "5%",
   },
   hash: {
     fontSize: 16,
