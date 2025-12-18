@@ -1,19 +1,29 @@
-import React from 'react';
-import {KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, TextInput, View} from 'react-native';
+import React ,{useState}from 'react';
+import {KeyboardAvoidingView, TouchableOpacity,Platform,FlatList,Alert, StyleSheet, Text, TextInput, View} from 'react-native';
 
 export default function PixelGuesserScreen() {
 
-    const [text, onChangeText] = React.useState('');
+    const [guess, onGuessText] = useState('');
+    const [guesses,onGuessEnter]  = useState<string[]>([])
+
+    const addGuess = () =>{
+       const newGuess = guess.trim();
+       if (!newGuess) return Alert.alert("kein leerer Text")
+       onGuessEnter(prev =>[...prev,newGuess]);
+       onGuessText("");
+    }
 
     return (
-        <ScrollView contentContainerStyle={styles.container}>
+        <View style={styles.container}>
+            <View>
+                <Text style={styles.title}>Runde 1</Text>
+            </View>
             <View style={[
                 styles.container, {
                     flexDirection: 'row'
                 }
             ]}>
                 <Text style={styles.title}>SpielerIn pixelt!</Text>
-                <Text style={styles.title}>Runde 1</Text>
                 <Text style={styles.timerBubble}> <Text style={styles.timerText}>12s</Text></Text>
             </View>
             <View style={styles.gridContainer}>
@@ -25,26 +35,37 @@ export default function PixelGuesserScreen() {
                     </View>
                 ))}
             </View>
-            <KeyboardAvoidingView
-                behavior={Platform.OS === 'android' ? 'padding' : 'height'}>
-                <TextInput
-                    style={styles.input}
-                    onChangeText={onChangeText}
-                    value={text}
-                    placeholder="Hier Lösung eingeben"
-                    keyboardType='default'
-                />
-            </KeyboardAvoidingView>
+                <KeyboardAvoidingView style={[styles.input,{flexDirection:"row"}]}
+                                      behavior={Platform.OS === 'android' ? 'padding' : 'height'}>
+                    <TextInput
+                        placeholder="Hier Lösung eingeben"
+                        value={guess}
+                        style={styles.input}
+                        onChangeText={onGuessText}
+                        returnKeyType="done"
+                    />
+                    <TouchableOpacity style={styles.ghostButton} onPress={addGuess}>
+                        <Text style={styles.ghostButtonText}>ENTER</Text>
+                    </TouchableOpacity>
+
+                </KeyboardAvoidingView>
+
             <View style={styles.ratebox}>
                 <Text style={styles.rateTitle}>Ratebox</Text>
-                <Text style={styles.guess}><Text style={styles.bold}>Lukas:</Text> Wald</Text>
-                <Text style={styles.guess}><Text style={styles.bold}>Nele:</Text> Rose</Text>
-                <Text style={styles.guess}><Text style={styles.bold}>Lukas:</Text> Baum</Text>
-                <Text style={styles.guess}><Text style={styles.bold}>Lukas:</Text> Blume</Text>
-                <Text style={styles.guess}><Text style={styles.bold}>Lukas:</Text> Blume</Text>
+                <FlatList
+                    inverted
+                    data={guesses}
+                    keyExtractor={(item,index)=>`${item}-${index}`}
+                    style={styles.guess}
+                    renderItem={({item})=>(
+                        <View style={styles.guess}>
+                            <Text><Text style={styles.big}>NAME:</Text> {item}</Text>
+                        </View>
+                    )}
+                />
             </View>
 
-        </ScrollView>
+        </View>
     );
 }
 
@@ -79,6 +100,9 @@ const styles = StyleSheet.create({
     gridRow: {
         flexDirection: 'row'
     },
+    gridColumn: {
+        flexDirection: 'column'
+    },
     cell: {
         width: 44,
         height: 44,
@@ -87,11 +111,20 @@ const styles = StyleSheet.create({
         backgroundColor: '#d9d9d9'
     },
     input: {
-        height: 40,
-        margin: 20,
-        borderWidth: 2,
-        padding: 10,
+        width: "85%",
+        alignItems:"center",
+        backgroundColor: "#E6E6E6",
+        borderRadius: 10,
+        fontSize: 16,
+        margin: 8,
+        paddingLeft:8,
     },
+    ghostButton: {
+        alignItems:"center",
+        justifyContent:"center",
+        marginRight:10
+    },
+    ghostButtonText: { color: "#357ABD", fontSize: 16 },
     ratebox: {
         backgroundColor: '#e6e6e6',
         padding: 20,
@@ -109,7 +142,7 @@ const styles = StyleSheet.create({
         fontSize: 16,
         marginVertical: 2
     },
-    bold: {
+    big: {
         fontWeight: '700'
     },
 });

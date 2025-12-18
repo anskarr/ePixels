@@ -9,7 +9,7 @@ export default function GuessScreen() {
     useEffect(() => {
         const timer = setTimeout(() => {
             router.navigate('./pixelGameGuesser')
-        }, 4000)
+        }, 5000)
 
         return () => clearTimeout(timer);
     }, []);
