@@ -1,5 +1,5 @@
 import React ,{useState}from 'react';
-import {KeyboardAvoidingView, TouchableOpacity,Platform,FlatList,Alert, StyleSheet, Text, TextInput, View} from 'react-native';
+import {TouchableOpacity,FlatList,Alert, StyleSheet, Text, TextInput, View} from 'react-native';
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 
 export default function PixelGuesserScreen() {

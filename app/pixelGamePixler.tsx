@@ -2,15 +2,12 @@ import React, { useState } from 'react';
 import { ScrollView, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
 export default function PixelPixlerScreen() {
-    // 1. State für die aktuell gewählte Farbe (Standard: Schwarz)
     const [selectedColor, setSelectedColor] = useState('#000000');
 
-    // 2. State für das 8x8 Grid (Initialisierung mit dem Standard-Grau #d9d9d9)
     const [grid, setGrid] = useState(
         Array(8).fill(null).map(() => Array(8).fill('#d9d9d9'))
     );
 
-    // Funktion zum Einfärben eines Feldes
     const handleCellPress = (rowIdx: number, colIdx: number) => {
         const newGrid = [...grid];
         newGrid[rowIdx] = [...newGrid[rowIdx]]; // Kopie der Zeile für Immutability
@@ -35,7 +32,7 @@ export default function PixelPixlerScreen() {
                 </View>
             </View>
 
-            {/* Das interaktive Grid */}
+            {/* interaktives Grid */}
             <View style={styles.gridContainer}>
                 {grid.map((row, rowIdx) => (
                     <View key={rowIdx} style={styles.gridRow}>
@@ -51,7 +48,7 @@ export default function PixelPixlerScreen() {
                 ))}
             </View>
 
-            {/* Die interaktive Palette */}
+            {/* interaktive Farbpalette */}
             <View style={styles.palette}>
                 {paletteRows.map((row, rowIndex) => (
                     <View key={rowIndex} style={styles.paletteRow}>
@@ -71,6 +68,7 @@ export default function PixelPixlerScreen() {
                 ))}
             </View>
 
+            {/* Ratebox mit fixed Text */}
             <View style={styles.ratebox}>
                 <Text style={styles.rateTitle}>Ratebox</Text>
                 <Text style={styles.guess}><Text style={styles.big}>Lukas:</Text> Wald</Text>
