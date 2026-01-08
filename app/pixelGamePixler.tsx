@@ -1,42 +1,74 @@
-import React from 'react';
-import {ScrollView, StyleSheet, Text, View} from 'react-native';
+import React, { useState } from 'react';
+import { ScrollView, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
 export default function PixelPixlerScreen() {
+    const [selectedColor, setSelectedColor] = useState('#000000');
+
+    const [grid, setGrid] = useState(
+        Array(8).fill(null).map(() => Array(8).fill('#d9d9d9'))
+    );
+
+    const handleCellPress = (rowIdx: number, colIdx: number) => {
+        const newGrid = [...grid];
+        newGrid[rowIdx] = [...newGrid[rowIdx]]; // Kopie der Zeile für Immutability
+        newGrid[rowIdx][colIdx] = selectedColor;
+        setGrid(newGrid);
+    };
+
+    const paletteRows = [
+        ['#000000', '#1d2b53', '#7e2553', '#008751', '#ab5236', '#5f574f', '#c2c3c7', '#fff1e8'],
+        ['#ff003d', '#ffa300', '#ffec27', '#00e436', '#29adff', '#83769c', '#ff77a8', '#ffccaa']
+    ];
+
     return (
         <ScrollView contentContainerStyle={styles.container}>
             <View>
                 <Text style={styles.title}>Runde 1</Text>
             </View>
-            <View style={[
-                styles.container, {
-                    flexDirection: 'row'
-                }
-            ]}>
+            <View style={[styles.headerRow]}>
                 <Text style={styles.title}>SpielerIn pixelt!</Text>
-                <Text style={styles.timerBubble}> <Text style={styles.timerText}>12s</Text></Text>
-            </View>
-            <View style={styles.gridContainer}>
-                {[...Array(8)].map((_, rowIdx) => (
-                    <View key={rowIdx} style={styles.gridRow}>
-                        {[...Array(8)].map((_, colIdx) => {
-                            return (<View key={colIdx} style={[styles.cell]}/>);
-                        })}
-                    </View>
-                ))}
-            </View>
-            <View style={styles.palette}>
-                <View style={styles.paletteRow}>
-                    {['#000000', '#1d2b53', '#7e2553', '#008751', '#ab5236', '#5f574f', '#c2c3c7', '#fff1e8'].map((c, i) => (
-                        <View key={i} style={[styles.colorBox, {backgroundColor: c}]}/>
-                    ))}
-                </View>
-                <View style={styles.paletteRow}>
-                    {['#ff003d', '#ffa300', '#ffec27', '#00e436', '#29adff', '#83769c', '#ff77a8', '#ffccaa'].map((c, i) => (
-                        <View key={i} style={[styles.colorBox, {backgroundColor: c}]}/>
-                    ))}
+                <View style={styles.timerBubble}>
+                    <Text style={styles.timerText}>12s</Text>
                 </View>
             </View>
 
+            {/* interaktives Grid */}
+            <View style={styles.gridContainer}>
+                {grid.map((row, rowIdx) => (
+                    <View key={rowIdx} style={styles.gridRow}>
+                        {row.map((cellColor, colIdx) => (
+                            <TouchableOpacity
+                                key={colIdx}
+                                style={[styles.cell, { backgroundColor: cellColor }]}
+                                onPress={() => handleCellPress(rowIdx, colIdx)}
+                                activeOpacity={0.7}
+                            />
+                        ))}
+                    </View>
+                ))}
+            </View>
+
+            {/* interaktive Farbpalette */}
+            <View style={styles.palette}>
+                {paletteRows.map((row, rowIndex) => (
+                    <View key={rowIndex} style={styles.paletteRow}>
+                        {row.map((color) => (
+                            <TouchableOpacity
+                                key={color}
+                                style={[
+                                    styles.colorBox,
+                                    { backgroundColor: color },
+                                    // Hervorhebung der aktiven Farbe
+                                    selectedColor === color && styles.selectedColorBox
+                                ]}
+                                onPress={() => setSelectedColor(color)}
+                            />
+                        ))}
+                    </View>
+                ))}
+            </View>
+
+            {/* Ratebox mit fixed Text */}
             <View style={styles.ratebox}>
                 <Text style={styles.rateTitle}>Ratebox</Text>
                 <Text style={styles.guess}><Text style={styles.big}>Lukas:</Text> Wald</Text>
@@ -51,8 +83,13 @@ export default function PixelPixlerScreen() {
 const styles = StyleSheet.create({
     container: {
         alignItems: 'center',
-        paddingVertical: 5,
+        paddingVertical: 20,
         backgroundColor: '#ffffff'
+    },
+    headerRow: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginBottom: 10
     },
     title: {
         fontSize: 24,
@@ -61,8 +98,9 @@ const styles = StyleSheet.create({
     },
     timerBubble: {
         backgroundColor: '#e7e7e7',
-        margin: 4,
-        padding: 8,
+        marginLeft: 10,
+        paddingHorizontal: 12,
+        paddingVertical: 4,
         borderRadius: 20,
     },
     timerText: {
@@ -70,8 +108,6 @@ const styles = StyleSheet.create({
         fontWeight: '600'
     },
     gridContainer: {
-        height: 356,
-        width: 356,
         borderWidth: 2,
         marginBottom: 20,
         borderColor: '#999',
@@ -84,7 +120,6 @@ const styles = StyleSheet.create({
         height: 44,
         borderWidth: 1,
         borderColor: '#bcbcbc',
-        backgroundColor: '#d9d9d9'
     },
     palette: {
         padding: 10,
@@ -101,7 +136,14 @@ const styles = StyleSheet.create({
         width: 32,
         height: 32,
         borderRadius: 4,
-        marginHorizontal: 4
+        marginHorizontal: 4,
+        borderWidth: 1,
+        borderColor: 'rgba(0,0,0,0.1)'
+    },
+    selectedColorBox: {
+        borderWidth: 3,
+        borderColor: '#ffffff',
+        transform: [{ scale: 1.1 }]
     },
     ratebox: {
         backgroundColor: '#e6e6e6',
@@ -124,4 +166,3 @@ const styles = StyleSheet.create({
         fontWeight: '700'
     }
 });
-

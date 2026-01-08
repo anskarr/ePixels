@@ -11,7 +11,7 @@ export default function DrawScreen() {
     useEffect(() => {
         const timer = setTimeout(()=>{
             router.navigate('./pixelGamePixler')
-        },4000)
+        },5000)
 
         return () =>clearTimeout(timer);
     }, []);
