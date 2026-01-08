@@ -1,6 +1,17 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Dimensions, StatusBar, } from "react-native";
-import {useRouter} from 'expo-router'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  StyleSheet,
+  Dimensions,
+  StatusBar,
+  KeyboardAvoidingView,
+  ScrollView,
+} from "react-native";
+import { useRouter } from 'expo-router';
 
 const { width } = Dimensions.get("window");
 
@@ -9,104 +20,109 @@ export default function HomeScreen() {
   const router = useRouter();
 
   const onPlay = () => {
-      router.navigate('./LobbyUser')
+    router.navigate('./LobbyUser');
   };
 
   const onCreateRoom = () => {
-      router.navigate('./LobbyHost')
+    router.navigate('./LobbyHost');
   };
 
   const onJoinRoom = () => {
-      router.navigate('./LobbyUser')
+    router.navigate('./LobbyUser');
   };
 
   const onBurger = () => {
-      router.navigate('/options')
+    router.navigate('/options');
   };
 
   const onTutorial = () => {
-      router.navigate('/tutorial')
+    router.navigate('/tutorial');
   };
 
   return (
-    <View style={styles.safe}>
-      <StatusBar barStyle="dark-content" />
-      {/* Top line + burger */}
-      <View style={styles.topRow}>
-        <TouchableOpacity
-          onPress={onBurger}
-          accessibilityLabel="Burger Menü"
-          style={styles.burgerTouchable}
+      <KeyboardAvoidingView style={styles.safe}
+      behavior={undefined}
+      >
+        <KeyboardAwareScrollView
+            contentContainerStyle={{ flexGrow: 1 }}
+            enableOnAndroid={true}
         >
-          {/* Drei horizontale Striche */}
-          <View style={styles.burgerLine} />
-          <View style={[styles.burgerLine, { marginTop: 6 }]} />
-          <View style={[styles.burgerLine, { marginTop: 6 }]} />
-        </TouchableOpacity>
-      </View>
+          <StatusBar barStyle="dark-content" />
+          {/* Top line + burger */}
+          <View style={styles.topRow}>
+            <TouchableOpacity
+                onPress={onBurger}
+                accessibilityLabel="Burger Menü"
+                style={styles.burgerTouchable}
+            >
+              <View style={styles.burgerLine} />
+              <View style={[styles.burgerLine, { marginTop: 6 }]} />
+              <View style={[styles.burgerLine, { marginTop: 6 }]} />
+            </TouchableOpacity>
+          </View>
 
-      {/* Logo / Titel */}
-      <View style={styles.header}>
-        <Text style={styles.logo}>epiXels</Text>
-      </View>
+          {/* Logo / Titel */}
+          <View style={styles.header}>
+            <Text style={styles.logo}>epiXels</Text>
+          </View>
 
-      <View style={styles.content}>
+          <View style={styles.content}>
+            <TouchableOpacity
+                style={styles.redButton}
+                onPress={onTutorial}
+                accessibilityRole="button"
+                accessibilityLabel="Tutorial ansehen"
+            >
+              <Text style={styles.redButtonText}>Tutorial</Text>
+            </TouchableOpacity>
 
-        <TouchableOpacity
-            style={styles.redButton}
-            onPress={onTutorial}
-            accessibilityRole="button"
-            accessibilityLabel="Tutorial ansehen"
-        >
-          <Text style={styles.redButtonText}>Tutorial</Text>
-        </TouchableOpacity>
+            {/* PLAY button (grün) */}
+            <TouchableOpacity
+                style={styles.playButton}
+                onPress={onPlay}
+                accessibilityRole="button"
+                accessibilityLabel="Play"
+            >
+              <Text style={styles.playText}>Zufälliges Spiel</Text>
+            </TouchableOpacity>
 
-        {/* PLAY button (grün) */}
-        <TouchableOpacity
-          style={styles.playButton}
-          onPress={onPlay}
-          accessibilityRole="button"
-          accessibilityLabel="Play"
-        >
-          <Text style={styles.playText}>Zufälliges Spiel</Text>
-        </TouchableOpacity>
+            {/* Privaten Raum erstellen (blau) */}
+            <TouchableOpacity
+                style={styles.blueButton}
+                onPress={onCreateRoom}
+                accessibilityRole="button"
+                accessibilityLabel="Privaten Raum erstellen"
+            >
+              <Text style={styles.blueButtonText}>Privaten Raum erstellen</Text>
+            </TouchableOpacity>
 
-        {/* Privaten Raum erstellen (blau) */}
-        <TouchableOpacity
-          style={styles.blueButton}
-          onPress={onCreateRoom}
-          accessibilityRole="button"
-          accessibilityLabel="Privaten Raum erstellen"
-        >
-          <Text style={styles.blueButtonText}>Privaten Raum erstellen</Text>
-        </TouchableOpacity>
+            {/* Lobby Code Label + Input */}
+            <View style={styles.lobbyRow}>
+              <Text style={styles.hash}>#</Text>
+              <TextInput
+                  style={[styles.input, styles.lobbyInput]}
+                  placeholder="Lobby Code"
+                  placeholderTextColor="#222"
+                  value={lobbyCode}
+                  onChangeText={setLobbyCode}
+                  accessibilityLabel="Lobby Code"
+                  returnKeyType="done"
+                  autoCapitalize="none"
+              />
+            </View>
 
-        {/* Lobby Code Label + Input */}
-        <View style={styles.lobbyRow}>
-          <Text style={styles.hash}>#</Text>
-          <TextInput
-            style={[styles.input, styles.lobbyInput]}
-            placeholder="Lobby Code"
-            placeholderTextColor="#222"
-            value={lobbyCode}
-            onChangeText={setLobbyCode}
-            accessibilityLabel="Lobby Code"
-            returnKeyType="done"
-            autoCapitalize="none"
-          />
-        </View>
-
-        {/* Privaten Raum beitreten (blau) */}
-        <TouchableOpacity
-          style={styles.blueButton}
-          onPress={onJoinRoom}
-          accessibilityRole="button"
-          accessibilityLabel="Privaten Raum beitreten"
-        >
-          <Text style={styles.blueButtonText}>Privatem Raum beitreten</Text>
-        </TouchableOpacity>
-      </View>
-    </View>
+            {/* Privaten Raum beitreten (blau) */}
+            <TouchableOpacity
+                style={styles.blueButton}
+                onPress={onJoinRoom}
+                accessibilityRole="button"
+                accessibilityLabel="Privaten Raum beitreten"
+            >
+              <Text style={styles.blueButtonText}>Privatem Raum beitreten</Text>
+            </TouchableOpacity>
+          </View>
+        </KeyboardAwareScrollView>
+      </KeyboardAvoidingView>
   );
 }
 
@@ -115,7 +131,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
   },
-  topRow: {
+topRow: {
     height: 48,
     flexDirection: "row",
     alignItems: "center",
