@@ -7,7 +7,7 @@ export default function Options() {
     const router = useRouter();
 
     return (
-        <ScrollView>
+        <ScrollView style={styles.safe}>
             <TouchableOpacity onPress={() => router.back()} >
                 <Ionicons name="arrow-back-outline" size={64} style={{padding: 10,}}/>
             </TouchableOpacity>
@@ -47,6 +47,10 @@ export default function Options() {
 }
 
 const styles = StyleSheet.create({
+    safe: {
+        flex: 1,
+        backgroundColor: "#fff",
+    },
     sliderContainer: {
         flexDirection: 'row',
         padding: 40,
