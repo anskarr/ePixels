@@ -25,11 +25,13 @@ export default function PixelPixlerScreen() {
             <View>
                 <Text style={styles.title}>Runde 1</Text>
             </View>
-            <View style={[styles.headerRow]}>
+            <View style={[
+                styles.container, {
+                    flexDirection: 'row'
+                }
+            ]}>
                 <Text style={styles.title}>SpielerIn pixelt!</Text>
-                <View style={styles.timerBubble}>
-                    <Text style={styles.timerText}>12s</Text>
-                </View>
+                <Text style={styles.timerBubble}> <Text style={styles.timerText}>12s</Text></Text>
             </View>
 
             {/* interaktives Grid */}
@@ -83,24 +85,25 @@ export default function PixelPixlerScreen() {
 const styles = StyleSheet.create({
     container: {
         alignItems: 'center',
-        paddingVertical: 20,
-        backgroundColor: '#ffffff'
+        paddingVertical: 5,
+        backgroundColor: '#ffffff',
+        flex:1
+    },
+    title: {
+        fontSize: 24,
+        fontWeight: '800',
+        margin: 8,
+        color: '#000066'
     },
     headerRow: {
         flexDirection: 'row',
         alignItems: 'center',
         marginBottom: 10
     },
-    title: {
-        fontSize: 24,
-        fontWeight: '800',
-        color: '#000066'
-    },
     timerBubble: {
         backgroundColor: '#e7e7e7',
-        marginLeft: 10,
-        paddingHorizontal: 12,
-        paddingVertical: 4,
+        margin: 8,
+        padding: 8,
         borderRadius: 20,
     },
     timerText: {
@@ -108,10 +111,13 @@ const styles = StyleSheet.create({
         fontWeight: '600'
     },
     gridContainer: {
+        height: 356,
+        width: 356,
         borderWidth: 2,
-        marginBottom: 20,
+        marginBottom: 10,
         borderColor: '#999',
     },
+
     gridRow: {
         flexDirection: 'row'
     },
@@ -120,16 +126,18 @@ const styles = StyleSheet.create({
         height: 44,
         borderWidth: 1,
         borderColor: '#bcbcbc',
+        backgroundColor: '#d9d9d9'
     },
     palette: {
         padding: 10,
+        width: '85%',
         backgroundColor: '#e6e6e6',
         borderRadius: 10,
-        marginBottom: 30
+        margin: 10
     },
     paletteRow: {
         flexDirection: 'row',
-        marginBottom: 10,
+        margin: 3,
         justifyContent: 'center'
     },
     colorBox: {
@@ -149,7 +157,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#e6e6e6',
         padding: 20,
         width: '85%',
-        borderRadius: 12
+        borderRadius: 12,
+        marginBottom: 10
     },
     rateTitle: {
         fontSize: 20,

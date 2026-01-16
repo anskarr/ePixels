@@ -85,7 +85,7 @@ export default function HomeScreen() {
         <View style={styles.lobbyRow}>
           <Text style={styles.hash}>#</Text>
           <TextInput
-            style={[styles.input, styles.lobbyInput]}
+            style={[styles.input]}
             placeholder="Lobby Code"
             placeholderTextColor="#222"
             value={lobbyCode}
@@ -139,7 +139,7 @@ const styles = StyleSheet.create({
   burgerLine: {
     width: 24,
     height: 3,
-    backgroundColor: "#111",
+    backgroundColor: "#000",
     borderRadius: 2,
   },
 
@@ -163,7 +163,7 @@ const styles = StyleSheet.create({
   },
 
   input: {
-    width: Math.min(width - 80, 360),
+    width: '81%', //etwas kleiner skalieren wegen dem # Zeichen davor
     height: 50,
     borderRadius: 18,
     borderWidth: 2,
@@ -177,12 +177,11 @@ const styles = StyleSheet.create({
   playButton: {
     width: Math.min(width - 80, 360),
     height: 74,
-    backgroundColor: "#26b33b", // grün
+    backgroundColor: "#26b33b",
     borderRadius: 10,
     justifyContent: "center",
     alignItems: "center",
     marginVertical: "3%",
-    // leichter Schatten (iOS/Android)
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.15,
@@ -200,7 +199,7 @@ const styles = StyleSheet.create({
     width: Math.min(width - 80, 360),
     minWidth: 180,
     height: 40,
-    backgroundColor: "#1aa0c4", // blau
+    backgroundColor: "#1aa0c4",
     borderRadius: 12,
     justifyContent: "center",
     alignItems: "center",
@@ -240,9 +239,9 @@ const styles = StyleSheet.create({
     marginBottom: "5%",
   },
   hash: {
-    fontSize: 16,
+    fontSize: 48,
     marginRight: 8,
-    color: "#222",
+    color: "#000",
   },
   lobbyInput: {
     textAlign: "center",
