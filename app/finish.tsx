@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
         margin: 10,
         height: 70,
         width: 340,
-        backgroundColor: 'lightgreen',
+        backgroundColor: "#26b33b",
         borderRadius: 20,
     },
     playAgainText:{

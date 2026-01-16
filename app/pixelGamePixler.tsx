@@ -30,7 +30,7 @@ export default function PixelPixlerScreen() {
                     flexDirection: 'row'
                 }
             ]}>
-                <Text style={styles.title}>SpielerIn pixelt!</Text>
+                <Text style={styles.title}>Pixle <Text style={styles.begriff}>Apfel </Text>!</Text>
                 <Text style={styles.timerBubble}> <Text style={styles.timerText}>12s</Text></Text>
             </View>
 
@@ -92,13 +92,15 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 24,
         fontWeight: '800',
-        margin: 8,
-        color: '#000066'
+        margin: 4,
+        color: '#000000'
+    },
+    begriff:{
+      color:'#ff0000'
     },
     headerRow: {
         flexDirection: 'row',
-        alignItems: 'center',
-        marginBottom: 10
+        alignItems: 'center'
     },
     timerBubble: {
         backgroundColor: '#e7e7e7',

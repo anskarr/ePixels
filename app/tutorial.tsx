@@ -1,7 +1,7 @@
-import { useRouter } from "expo-router";
-import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
-import React, { useState } from "react";
+import {useRouter} from "expo-router";
+import {ScrollView, StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import {Ionicons} from "@expo/vector-icons";
+import React, {useState} from "react";
 
 export default function Tutorial() {
     const router = useRouter();
@@ -14,7 +14,7 @@ export default function Tutorial() {
     return (
         <ScrollView style={styles.safe}>
             <TouchableOpacity onPress={() => router.back()}>
-                <Ionicons name="arrow-back-outline" size={64} style={{ padding: 10 }} />
+                <Ionicons name="arrow-back-outline" size={64} style={{padding: 10}}/>
             </TouchableOpacity>
             <View style={styles.header}>
                 <Text style={styles.logo}>Wie spielt man?</Text>

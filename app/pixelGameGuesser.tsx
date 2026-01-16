@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
         fontSize: 24,
         fontWeight: '800',
         margin: 8,
-        color: '#000066'
+        color: '#000000'
     },
     timerBubble: {
         backgroundColor: '#e7e7e7',

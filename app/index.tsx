@@ -85,10 +85,10 @@ export default function HomeScreen() {
         <View style={styles.lobbyRow}>
           <Text style={styles.hash}>#</Text>
           <TextInput
-            style={[styles.input]}
             placeholder="Lobby Code"
-            placeholderTextColor="#222"
             value={lobbyCode}
+            style={[styles.textInput]}
+            placeholderTextColor="#000"
             onChangeText={setLobbyCode}
             accessibilityLabel="Lobby Code"
             returnKeyType="done"
@@ -162,12 +162,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: 28,
   },
 
-  input: {
+ textInput: {
     width: '81%', //etwas kleiner skalieren wegen dem # Zeichen davor
     height: 50,
     borderRadius: 18,
     borderWidth: 2,
     borderColor: "#000",
+    backgroundColor: "#E6E6E6",
     paddingHorizontal: 12,
     marginVertical: 6,
     textAlign: "center",
@@ -208,7 +209,7 @@ const styles = StyleSheet.create({
   },
   blueButtonText: {
     fontSize: 18,
-    color: "#00343a",
+    color: "#000",
     textAlign: "center",
   },
 
