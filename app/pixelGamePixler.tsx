@@ -1,7 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ScrollView, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { useTimer } from '../hooks/timer';
 
 export default function PixelPixlerScreen() {
+
+    const timeLeft = useTimer(60);
+
+    const playerName = 'Spieler:in';
     const [selectedColor, setSelectedColor] = useState('#000000');
 
     const [grid, setGrid] = useState(
@@ -26,9 +31,9 @@ export default function PixelPixlerScreen() {
                 <Text style={styles.title}>Runde 1</Text>
             </View>
             <View style={[styles.headerRow]}>
-                <Text style={styles.title}>SpielerIn pixelt!</Text>
+                <Text style={styles.title}>{playerName} pixelt!</Text>
                 <View style={styles.timerBubble}>
-                    <Text style={styles.timerText}>12s</Text>
+                    <Text style={styles.timerText}>{timeLeft}s</Text>
                 </View>
             </View>
 

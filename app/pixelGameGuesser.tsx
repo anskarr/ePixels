@@ -1,8 +1,11 @@
 import React ,{useState}from 'react';
 import {TouchableOpacity,FlatList,Alert, StyleSheet, Text, TextInput, View} from 'react-native';
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
+import { useTimer } from '../hooks/timer';
 
 export default function PixelGuesserScreen() {
+
+    const timeLeft = useTimer(60);
 
     const [guess, onGuessText] = useState('');
     const [guesses,onGuessEnter]  = useState<string[]>([])
@@ -25,7 +28,7 @@ export default function PixelGuesserScreen() {
                 }
             ]}>
                 <Text style={styles.title}>SpielerIn pixelt!</Text>
-                <Text style={styles.timerBubble}> <Text style={styles.timerText}>12s</Text></Text>
+                <Text style={styles.timerBubble}> <Text style={styles.timerText}>{timeLeft}s</Text></Text>
             </View>
             <View style={styles.gridContainer}>
                 {[...Array(8)].map((_, rowIdx) => (
