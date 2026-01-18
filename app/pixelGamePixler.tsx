@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ScrollView, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import { useTimer } from '../hooks/timer';
+import { useTimer } from '../hooks/Timer';
 
 export default function PixelPixlerScreen() {
 

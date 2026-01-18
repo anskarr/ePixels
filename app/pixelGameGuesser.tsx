@@ -1,7 +1,7 @@
 import React ,{useState}from 'react';
 import {TouchableOpacity,FlatList,Alert, StyleSheet, Text, TextInput, View} from 'react-native';
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
-import { useTimer } from '../hooks/timer';
+import { useTimer } from '../hooks/Timer';
 
 export default function PixelGuesserScreen() {
 
