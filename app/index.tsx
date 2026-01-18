@@ -9,7 +9,6 @@ import {
   Dimensions,
   StatusBar,
   KeyboardAvoidingView,
-  ScrollView,
 } from "react-native";
 import { useRouter } from 'expo-router';
 
