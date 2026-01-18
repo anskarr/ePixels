@@ -6,7 +6,7 @@ import {
     TouchableOpacity,
     StyleSheet,
     FlatList,
-    Alert,
+    Alert, KeyboardAvoidingView,
 } from "react-native";
     import { useRouter } from "expo-router";
 
@@ -51,7 +51,7 @@ export default function LobbyUser() {
     };
 
     return (
-        <View style={styles.container}>
+        <KeyboardAvoidingView style={styles.container}>
             {/* Header */}
             <View style={styles.header}>
                 <TouchableOpacity onPress={() => router.push("/")}>
@@ -131,11 +131,11 @@ export default function LobbyUser() {
                     </View>
                 </>
             )}
-        </View>
+        </KeyboardAvoidingView>
     );
 }
 const styles = StyleSheet.create({
-    container: { flex: 1, paddingTop: 40, alignItems: "center", backgroundColor: "#FAFAFA" },
+    container: { paddingTop: 40, alignItems: "center", backgroundColor: "#FAFAFA" },
     header: { width: "90%", alignItems: "flex-start" },
     leave: { color: "#357ABD", fontSize: 16 },
 
