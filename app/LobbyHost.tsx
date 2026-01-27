@@ -1,6 +1,17 @@
-import React, {useState} from "react";
-import {View, Text, TextInput, TouchableOpacity, StyleSheet, FlatList, Alert,} from "react-native";
-import {useRouter} from "expo-router";
+import React, { useState } from "react";
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  StyleSheet,
+  FlatList,
+  Alert,
+  KeyboardAvoidingView,
+  Platform,
+  ScrollView
+} from "react-native";
+import { useRouter } from "expo-router";
 
 export default function LobbyHost() {
     const router = useRouter();
@@ -39,103 +50,116 @@ export default function LobbyHost() {
         router.push("./WordRevealForGuessingPlayer");
     };
 
-    return (
-        <View style={styles.container}>
-            {/* Header */}
-            <View style={styles.header}>
-                <TouchableOpacity onPress={() => router.push("./")}>
-                    <Text style={styles.leave}>◀ Verlassen</Text>
+  return (
+      <KeyboardAvoidingView
+          style={{ flex: 1 }}
+          behavior={Platform.OS === "ios" ? "padding" : undefined}
+      >
+        <View
+            style={styles.container}
+        >
+          {/* Header */}
+          <View style={styles.header}>
+            <TouchableOpacity onPress={() => router.push("./")}>
+              <Text style={styles.leave}>◀ Verlassen</Text>
+            </TouchableOpacity>
+          </View>
+
+          <Text style={styles.title}>Lobby</Text>
+
+          {!hostJoined ? (
+              <View style={styles.centerBox}>
+                <TextInput
+                    placeholder="Dein Host-Name"
+                    value={hostName}
+                    onChangeText={setHostName}
+                    style={styles.input}
+                    returnKeyType="done"
+                />
+                <TouchableOpacity
+                    style={styles.primaryButton}
+                    onPress={confirmHost}
+                >
+                  <Text style={styles.primaryButtonText}>
+                    Als Host beitreten
+                  </Text>
                 </TouchableOpacity>
-            </View>
+              </View>
+          ) : (
+              <>
+                <Text style={styles.sub}>
+                  {players.length}/{maxPlayers} Pixler
+                </Text>
+                <Text style={styles.code}>#1414</Text>
 
-            <Text style={styles.title}>Lobby</Text>
-
-            {!hostJoined ? (
-                <View style={styles.centerBox}>
-                    <TextInput
-                        placeholder="Dein Host-Name"
-                        value={hostName}
-                        onChangeText={setHostName}
-                        style={styles.input}
-                        returnKeyType="done"
-                    />
-                    <TouchableOpacity style={styles.primaryButton} onPress={confirmHost}>
-                        <Text style={styles.primaryButtonText}>Als Host beitreten</Text>
-                    </TouchableOpacity>
-                </View>
-            ) : (
-                <>
-                    <Text style={styles.sub}>
-                        {players.length}/{maxPlayers} Pixler
-                    </Text>
-                    <Text style={styles.code}>#1414</Text>
-
-                    {/* Spieler-Liste */}
-                    <FlatList
-                        data={players}
-                        keyExtractor={(item, index) => `${item}-${index}`}
-                        style={styles.playerList}
-                        renderItem={({item}) => (
-                            <View style={styles.playerRow}>
-                                <Text style={styles.playerText}>{item}</Text>
-                            </View>
-                        )}
-                        ItemSeparatorComponent={() => <View style={{height: 8}}/>}
-                    />
-
-                    {/* + Pixler: steht direkt unter der Liste */}
-                    {players.length < maxPlayers && (
-                        <View style={styles.addBox}>
-                            <TextInput
-                                placeholder="Name für neuen Pixler"
-                                value={newPlayerName}
-                                onChangeText={setNewPlayerName}
-                                style={styles.input}
-                                returnKeyType="done"
-                            />
-                            <TouchableOpacity style={styles.ghostButton} onPress={addPlayer}>
-                                <Text style={styles.ghostButtonText}>+ Pixler hinzufügen</Text>
-                            </TouchableOpacity>
+                {/* Spieler-Liste */}
+                <FlatList
+                    data={players}
+                    keyExtractor={(item, index) => `${item}-${index}`}
+                    style={styles.playerList}
+                    renderItem={({ item }) => (
+                        <View style={styles.playerRow}>
+                          <Text style={styles.playerText}>{item}</Text>
                         </View>
                     )}
+                    ItemSeparatorComponent={() => <View style={{ height: 8 }} />}
+                />
 
-                    {/* START */}
-                    <View style={styles.footer}>
-                        <TouchableOpacity
-                            style={[
-                                styles.startButton,
-                                players.length >= maxPlayers ? styles.startReady : styles.startNotReady,
-                            ]}
-                            onPress={startGame}
-                        >
-                            <Text style={styles.startButtonText}>
-                                {players.length >= maxPlayers
-                                    ? "Spiel starten"
-                                    : "Warte auf Pixler... trotzdem starten?"}
-                            </Text>
-                        </TouchableOpacity>
+                {/* + Pixler: steht direkt unter der Liste */}
+                {players.length < maxPlayers && (
+                    <View style={styles.addBox}>
+                      <TextInput
+                          placeholder="Name für neuen Pixler"
+                          value={newPlayerName}
+                          onChangeText={setNewPlayerName}
+                          style={styles.input}
+                          returnKeyType="done"
+                      />
+                      <TouchableOpacity
+                          style={styles.ghostButton}
+                          onPress={addPlayer}
+                      >
+                        <Text style={styles.ghostButtonText}>
+                          + Pixler hinzufügen
+                        </Text>
+                      </TouchableOpacity>
                     </View>
-                </>
-            )}
+                )}
+
+                {/* START */}
+                <View style={styles.footer}>
+                  <TouchableOpacity
+                      style={[
+                        styles.startButton,
+                        players.length >= maxPlayers
+                            ? styles.startReady
+                            : styles.startNotReady,
+                      ]}
+                      onPress={startGame}
+                  >
+                    <Text style={styles.startButtonText}>
+                      {players.length >= maxPlayers
+                          ? "Spiel starten"
+                          : "Warte auf Pixler... trotzdem starten?"}
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+              </>
+          )}
         </View>
-    );
+      </KeyboardAvoidingView>
+  );
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        paddingTop: 40,
-        alignItems: "center",
-        backgroundColor: "#FFFFFF"
-    },
-    header: {
-        width: "90%",
-        alignItems: "flex-start"
-    },
-    leave: {
-        color: "#357ABD",
-        fontSize: 16
-    },
+  container: {
+    paddingTop: 40,
+    alignItems: "center",
+    backgroundColor: "#FAFAFA",
+    paddingBottom: 60, // room for keyboard
+  },
+  header: { width: "90%", alignItems: "flex-start" },
+  leave: { color: "#357ABD", fontSize: 16 },
 
     title: {
         fontSize: 28,

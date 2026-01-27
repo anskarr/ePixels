@@ -1,7 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ScrollView, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { useTimer } from '../hooks/Timer';
 
 export default function PixelPixlerScreen() {
+
+    const timeLeft = useTimer(60);
+
+    const playerName = 'Spieler:in';
     const [selectedColor, setSelectedColor] = useState('#000000');
 
     const [grid, setGrid] = useState(
@@ -25,13 +30,11 @@ export default function PixelPixlerScreen() {
             <View>
                 <Text style={styles.title}>Runde 1</Text>
             </View>
-            <View style={[
-                styles.container, {
-                    flexDirection: 'row'
-                }
-            ]}>
-                <Text style={styles.title}>Pixle <Text style={styles.begriff}>Apfel </Text>!</Text>
-                <Text style={styles.timerBubble}> <Text style={styles.timerText}>12s</Text></Text>
+            <View style={[styles.headerRow]}>
+                <Text style={styles.title}>{playerName} pixle!<Text style={styles.begriff}>Apfel </Text>!</Text>
+                <View style={styles.timerBubble}>
+                    <Text style={styles.timerText}>{timeLeft}s</Text>
+                </View>
             </View>
 
             {/* interaktives Grid */}
