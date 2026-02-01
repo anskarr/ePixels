@@ -135,9 +135,6 @@ export default function LobbyUser() {
     );
 }
 const styles = StyleSheet.create({
-    container: { paddingTop: 40, alignItems: "center", backgroundColor: "#FAFAFA" },
-    header: { width: "90%", alignItems: "flex-start" },
-    leave: { color: "#357ABD", fontSize: 16 },
     container: {
         flex: 1,
         paddingTop: 40,
