@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { ScrollView, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { useTimer } from '../hooks/Timer';
 
@@ -31,7 +31,7 @@ export default function PixelPixlerScreen() {
                 <Text style={styles.title}>Runde 1</Text>
             </View>
             <View style={[styles.headerRow]}>
-                <Text style={styles.title}>{playerName} pixle!<Text style={styles.begriff}>Apfel </Text>!</Text>
+                <Text style={styles.title}>{playerName} pixle <Text style={styles.begriff}>Apfel </Text>!</Text>
                 <View style={styles.timerBubble}>
                     <Text style={styles.timerText}>{timeLeft}s</Text>
                 </View>

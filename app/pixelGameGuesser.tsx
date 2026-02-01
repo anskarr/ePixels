@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import {
     TouchableOpacity,
     FlatList,
@@ -15,7 +15,7 @@ import {
 } from 'react-native-safe-area-context';
 
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
-import { useTimer } from '../hooks/Timer';
+import {useTimer} from '../hooks/Timer';
 
 export default function PixelGuesserScreen() {
 
@@ -42,7 +42,7 @@ export default function PixelGuesserScreen() {
                     <View>
                         <Text style={styles.title}>Runde 1</Text>
                     </View>
-                    <View style={[styles.containerRow, { flexDirection: 'row' }]}>
+                    <View style={[styles.containerRow, {flexDirection: 'row'}]}>
                         <Text style={styles.title}>SpielerIn pixelt!</Text>
                         <Text style={styles.timerBubble}> <Text style={styles.timerText}>{timeLeft}s</Text></Text>
                     </View>
@@ -50,7 +50,7 @@ export default function PixelGuesserScreen() {
                         {[...Array(8)].map((_, rowIdx) => (
                             <View key={rowIdx} style={styles.gridRow}>
                                 {[...Array(8)].map((_, colIdx) => (
-                                    <View key={colIdx} style={[styles.cell]} />
+                                    <View key={colIdx} style={[styles.cell]}/>
                                 ))}
                             </View>
                         ))}
@@ -66,7 +66,7 @@ export default function PixelGuesserScreen() {
                             onSubmitEditing={addGuess}
                         />
                         <TouchableOpacity style={styles.iconButton} onPress={addGuess}>
-                            <MaterialIcons name="send" size={24} color="#007AFF" />
+                            <MaterialIcons name="send" size={24} color="#007AFF"/>
                         </TouchableOpacity>
                     </View>
                     <View style={styles.ratebox}>
@@ -76,7 +76,7 @@ export default function PixelGuesserScreen() {
                             data={guesses}
                             keyExtractor={(item, index) => `${item}-${index}`}
                             style={styles.guess}
-                            renderItem={({ item }) => (
+                            renderItem={({item}) => (
                                 <View style={styles.guess}>
                                     <Text><Text style={styles.big}>NAME:</Text> {item}</Text>
                                 </View>

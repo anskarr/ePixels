@@ -8,7 +8,7 @@ export default function Options() {
 
     return (
         <ScrollView style={styles.safe}>
-            <TouchableOpacity onPress={() => router.back()} >
+            <TouchableOpacity onPress={() => router.back()}>
                 <Ionicons name="arrow-back-outline" size={64} style={{padding: 10,}}/>
             </TouchableOpacity>
             <ScrollView>
@@ -21,7 +21,7 @@ export default function Options() {
                         minimumTrackTintColor="#FFFFFF"
                         maximumTrackTintColor="#000000"
                     />
-                </View >
+                </View>
                 <View style={styles.sliderContainer}>
                     <Ionicons name="musical-notes-outline" size={64}/>
                     <Slider
@@ -57,12 +57,12 @@ const styles = StyleSheet.create({
         justifyContent: "center",
     },
     titleText: {
-        fontSize:48,
+        fontSize: 48,
         alignSelf: "flex-start",
         padding: 10
     },
     bodyText: {
-        fontSize:20,
+        fontSize: 20,
         alignSelf: "flex-start",
         padding: 10
     }

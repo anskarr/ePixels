@@ -72,7 +72,6 @@ const styles = StyleSheet.create({
     safe: {
         flex: 1,
         backgroundColor: "#fff",
-        marginTop: "9%",
     },
     header: {
         alignItems: "center",

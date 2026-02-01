@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react';
+import React, {useEffect} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {StatusBar} from 'expo-status-bar';
 import {useRouter} from 'expo-router'
@@ -9,11 +9,11 @@ export default function DrawScreen() {
     const router = useRouter();
 
     useEffect(() => {
-        const timer = setTimeout(()=>{
+        const timer = setTimeout(() => {
             router.navigate('./pixelGamePixler')
-        },5000)
+        }, 5000)
 
-        return () =>clearTimeout(timer);
+        return () => clearTimeout(timer);
     }, []);
 
     return (

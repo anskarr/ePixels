@@ -31,6 +31,7 @@ const styles = StyleSheet.create({
     topContainer:{
         alignSelf: "center",
         padding: 20,
+        backgroundColor:'#FFFFFF'
     },
     topText:{
         fontSize: 24,
@@ -39,9 +40,11 @@ const styles = StyleSheet.create({
     content:{
         flex: 1,
         paddingBottom: 300,
+        backgroundColor:'#FFFFFF'
     },
     bottomContainer:{
         position: "absolute",
+        backgroundColor:"#FFFFFF",
         top: 640,
         bottom: 0,
         left: 0,
@@ -64,6 +67,7 @@ const styles = StyleSheet.create({
     playAgainContainer:{
         alignSelf: "center",
         verticalAlign: "bottom",
+        justifyContent:"center",
         margin: 10,
         height: 70,
         width: 340,
@@ -72,6 +76,6 @@ const styles = StyleSheet.create({
     },
     playAgainText:{
         alignSelf: "center",
-        fontSize: 48,
+        fontSize: 32,
     }
 });

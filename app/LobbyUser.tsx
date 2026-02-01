@@ -9,6 +9,7 @@ import {
     Alert, KeyboardAvoidingView,
 } from "react-native";
 import {useRouter} from "expo-router";
+import { Ionicons } from "@expo/vector-icons";
 
 export default function LobbyUser() {
     const router = useRouter();
@@ -55,7 +56,7 @@ export default function LobbyUser() {
             {/* Header */}
             <View style={styles.header}>
                 <TouchableOpacity onPress={() => router.push("/")}>
-                    <Text style={styles.leave}>◀ Verlassen</Text>
+                    <Ionicons name="arrow-back-outline" size={64} style={{padding: 10}}/>
                 </TouchableOpacity>
             </View>
 
@@ -183,7 +184,11 @@ const styles = StyleSheet.create({
         padding: 12,
         borderRadius: 10,
     },
-    primaryButtonText: {color: "white", textAlign: "center", fontSize: 16},
+    primaryButtonText: {
+        color: "white",
+        textAlign: "center",
+        fontSize: 16
+    },
 
     playerList: {width: "85%", marginTop: 6, maxHeight: 300},
 
@@ -201,7 +206,6 @@ const styles = StyleSheet.create({
 
     footer: {width: "80%", marginTop: 12},
 
-    /* START BUTTON */
     startButton: {padding: 14, borderRadius: 12},
     startReady: {backgroundColor: "#26b33b"},
     startNotReady: {backgroundColor: "#999"},
