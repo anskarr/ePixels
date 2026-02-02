@@ -160,7 +160,7 @@ const styles = StyleSheet.create({
         paddingBottom: 60, // room for keyboard
     },
     header: {width: "90%", alignItems: "flex-start"},
-    leave: {color: "#357ABD", fontSize: 16},
+    leave: {color: "#1aa0c4", fontSize: 16},
 
     title: {
         fontSize: 28,
@@ -173,7 +173,7 @@ const styles = StyleSheet.create({
         fontSize: 16
     },
     code: {
-        color: "#357ABD",
+        color: "#1aa0c4",
         fontSize: 18,
         marginBottom: 12
     },
@@ -190,12 +190,11 @@ const styles = StyleSheet.create({
         marginBottom: 8,
     },
     primaryButton: {
-        backgroundColor: "#357ABD",
+        backgroundColor: "#1aa0c4",
         padding: 12,
         borderRadius: 10,
     },
     primaryButtonText: {
-        color: "white",
         textAlign: "center",
         fontSize: 16
     },
@@ -213,12 +212,12 @@ const styles = StyleSheet.create({
     addBox: {width: "80%", marginTop: 12},
 
     ghostButton: {paddingVertical: 10, alignItems: "center"},
-    ghostButtonText: {color: "#357ABD", fontSize: 16},
+    ghostButtonText: {color: "#1aa0c4", fontSize: 16},
 
     footer: {width: "80%", marginTop: 12},
 
     startButton: {padding: 14, borderRadius: 12},
     startReady: {backgroundColor: "#26b33b"},
     startNotReady: {backgroundColor: "#999"},
-    startButtonText: {color: "#ffffff", textAlign: "center", fontSize: 16},
+    startButtonText: { textAlign: "center", fontSize: 16},
 });

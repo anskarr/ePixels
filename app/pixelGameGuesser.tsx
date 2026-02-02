@@ -43,7 +43,7 @@ export default function PixelGuesserScreen() {
                         <Text style={styles.title}>Runde 1</Text>
                     </View>
                     <View style={[styles.containerRow, {flexDirection: 'row'}]}>
-                        <Text style={styles.title}>SpielerIn pixelt!</Text>
+                        <Text style={styles.title}>Errate den Begriff!</Text>
                         <Text style={styles.timerBubble}> <Text style={styles.timerText}>{timeLeft}s</Text></Text>
                     </View>
                     <View style={styles.gridContainer}>
