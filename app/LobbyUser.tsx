@@ -55,7 +55,7 @@ export default function LobbyUser() {
         <KeyboardAvoidingView style={styles.container}>
             {/* Header */}
             <View style={styles.header}>
-                <TouchableOpacity onPress={() => router.push("/")}>
+                <TouchableOpacity onPress={() => router.back()}>
                     <Ionicons name="arrow-back-outline" size={64} style={{padding: 10}}/>
                 </TouchableOpacity>
             </View>

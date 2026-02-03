@@ -15,7 +15,7 @@ export default function PixelPixlerScreen() {
 
     const handleCellPress = (rowIdx: number, colIdx: number) => {
         const newGrid = [...grid];
-        newGrid[rowIdx] = [...newGrid[rowIdx]]; // Kopie der Zeile für Immutability
+        newGrid[rowIdx] = [...newGrid[rowIdx]];
         newGrid[rowIdx][colIdx] = selectedColor;
         setGrid(newGrid);
     };
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
         color: '#000000'
     },
     begriff: {
-        color: '#ff0000'
+        color: '#2b9bb8'
     },
     headerRow: {
         flexDirection: 'row',
