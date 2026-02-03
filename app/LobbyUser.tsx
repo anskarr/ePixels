@@ -9,7 +9,7 @@ import {
     Alert, KeyboardAvoidingView,
 } from "react-native";
 import {useRouter} from "expo-router";
-import { Ionicons } from "@expo/vector-icons";
+import {Ionicons} from "@expo/vector-icons";
 
 export default function LobbyUser() {
     const router = useRouter();
@@ -208,5 +208,5 @@ const styles = StyleSheet.create({
     startButton: {padding: 14, borderRadius: 12},
     startReady: {backgroundColor: "#26b33b"},
     startNotReady: {backgroundColor: "#999"},
-    startButtonText: { textAlign: "center", fontSize: 16},
+    startButtonText: {textAlign: "center", fontSize: 16},
 });

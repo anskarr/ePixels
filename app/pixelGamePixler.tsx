@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { ScrollView, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import { useTimer } from '../hooks/Timer';
+import React, {useState} from 'react';
+import {ScrollView, StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+import {useTimer} from '../hooks/Timer';
 
 export default function PixelPixlerScreen() {
 
@@ -45,7 +45,7 @@ export default function PixelPixlerScreen() {
                         {row.map((cellColor, colIdx) => (
                             <TouchableOpacity
                                 key={colIdx}
-                                style={[styles.cell, { backgroundColor: cellColor }]}
+                                style={[styles.cell, {backgroundColor: cellColor}]}
                                 onPress={() => handleCellPress(rowIdx, colIdx)}
                                 activeOpacity={0.7}
                             />
@@ -63,7 +63,7 @@ export default function PixelPixlerScreen() {
                                 key={color}
                                 style={[
                                     styles.colorBox,
-                                    { backgroundColor: color },
+                                    {backgroundColor: color},
                                     // Hervorhebung der aktiven Farbe
                                     selectedColor === color && styles.selectedColorBox
                                 ]}
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingVertical: 5,
         backgroundColor: '#ffffff',
-        flex:1
+        flex: 1
     },
     title: {
         fontSize: 24,
@@ -99,8 +99,8 @@ const styles = StyleSheet.create({
         margin: 4,
         color: '#000000'
     },
-    begriff:{
-      color:'#ff0000'
+    begriff: {
+        color: '#ff0000'
     },
     headerRow: {
         flexDirection: 'row',
@@ -157,7 +157,7 @@ const styles = StyleSheet.create({
     selectedColorBox: {
         borderWidth: 3,
         borderColor: '#ffffff',
-        transform: [{ scale: 1.1 }]
+        transform: [{scale: 1.1}]
     },
     ratebox: {
         backgroundColor: '#e6e6e6',

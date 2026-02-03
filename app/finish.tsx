@@ -1,5 +1,5 @@
 import {StyleSheet, ScrollView, Text, TouchableOpacity, View} from "react-native";
-import { useRouter } from "expo-router";
+import {useRouter} from "expo-router";
 
 export default function Finish() {
     const router = useRouter();
@@ -28,29 +28,29 @@ export default function Finish() {
 }
 
 const styles = StyleSheet.create({
-    topContainer:{
+    topContainer: {
         alignSelf: "center",
         padding: 20,
-        backgroundColor:'#FFFFFF'
+        backgroundColor: '#FFFFFF'
     },
-    topText:{
+    topText: {
         fontSize: 24,
         textAlign: "center",
     },
-    content:{
+    content: {
         flex: 1,
         paddingBottom: 300,
-        backgroundColor:'#FFFFFF'
+        backgroundColor: '#FFFFFF'
     },
-    bottomContainer:{
+    bottomContainer: {
         position: "absolute",
-        backgroundColor:"#FFFFFF",
+        backgroundColor: "#FFFFFF",
         top: 640,
         bottom: 0,
         left: 0,
         right: 0,
     },
-    playerContainer:{
+    playerContainer: {
         alignSelf: "center",
         margin: 10,
         height: 50,
@@ -58,23 +58,23 @@ const styles = StyleSheet.create({
         backgroundColor: 'lightblue',
         borderRadius: 25,
     },
-    baseText:{
+    baseText: {
         alignSelf: "flex-start",
         fontSize: 30,
         marginTop: 3,
         marginLeft: 20,
     },
-    playAgainContainer:{
+    playAgainContainer: {
         alignSelf: "center",
         verticalAlign: "bottom",
-        justifyContent:"center",
+        justifyContent: "center",
         margin: 10,
         height: 70,
         width: 340,
         backgroundColor: "#26b33b",
         borderRadius: 20,
     },
-    playAgainText:{
+    playAgainText: {
         alignSelf: "center",
         fontSize: 32,
     }
