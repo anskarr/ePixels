@@ -7,7 +7,7 @@ export default function Finish() {
     return (
         <View>
             <View style={styles.topContainer}>
-                <Text style={styles.topText}>Teilnehmer, die das Wort "PLATZHALTER" erraten haben:</Text>
+                <Text style={styles.topText}>Teilnehmer, die das Wort "<Text style={styles.begriff}>Apfel</Text>" erraten haben:</Text>
             </View>
             <ScrollView style={styles.content}>
                 <View style={styles.playerContainer}>
@@ -49,6 +49,9 @@ const styles = StyleSheet.create({
         bottom: 0,
         left: 0,
         right: 0,
+    },
+    begriff: {
+        color: '#2b9bb8'
     },
     playerContainer: {
         alignSelf: "center",

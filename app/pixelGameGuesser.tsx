@@ -39,6 +39,10 @@ export default function PixelGuesserScreen() {
         });
     };
 
+    function checkCorrectGuess (currentGuess:string):boolean {
+        return currentGuess === "Apfel" || currentGuess === "apfel";
+    }
+
     //Pico-8 Palette
     const colors = ['#008751','#ff003d','#fff1e8'];
     //Funktion soll malen anderer Spieler vortäuschen
@@ -183,7 +187,7 @@ export default function PixelGuesserScreen() {
                             style={styles.guess}
                             renderItem={({item}) => (
                                 <View style={styles.guess}>
-                                    <Text><Text style={styles.big}>Player:</Text> {item}</Text>
+                                    <Text><Text style={styles.big}>Peter:</Text> {item}</Text>
                                 </View>
                             )}
                         />

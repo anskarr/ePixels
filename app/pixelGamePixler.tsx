@@ -6,7 +6,7 @@ export default function PixelPixlerScreen() {
 
     const timeLeft = useTimer(60);
 
-    const playerName = 'Spieler:in';
+    const playerName = 'Peter';
     const [selectedColor, setSelectedColor] = useState('#000000');
 
     const [grid, setGrid] = useState(

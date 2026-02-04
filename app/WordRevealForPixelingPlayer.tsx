@@ -5,7 +5,7 @@ import {useRouter} from 'expo-router'
 
 export default function DrawScreen() {
     const wordToDraw = "Apfel"
-    const partnerName = "Frederick"
+    const partnerName = "Karsten"
     const router = useRouter();
 
     useEffect(() => {
