@@ -1,84 +1,89 @@
-import {StyleSheet, ScrollView, Text, TouchableOpacity, View} from "react-native";
-import {useRouter} from "expo-router";
+import React from "react";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
-export default function Finish() {
-    const router = useRouter();
+type FinishProps = {
+  guessedBy: string; // z.B. "Apfel"
+};
 
-    return (
-        <View>
-            <View style={styles.topContainer}>
-                <Text style={styles.topText}>Teilnehmer, die das Wort "<Text style={styles.begriff}>Apfel</Text>" erraten haben:</Text>
-            </View>
-            <ScrollView style={styles.content}>
-                <View style={styles.playerContainer}>
-                    <Text style={styles.baseText}>Lukas</Text>
-                </View>
-                <View style={styles.playerContainer}>
-                    <Text style={styles.baseText}>Nele</Text>
-                </View>
-            </ScrollView>
-            <View style={styles.bottomContainer}>
-                <TouchableOpacity onPress={() => router.navigate("./")} style={styles.playAgainContainer}>
-                    <Text style={styles.playAgainText}>Zurück zum Menü!</Text>
-                </TouchableOpacity>
-            </View>
-        </View>
+const Finish: React.FC<FinishProps> = ({ guessedBy }) => {
+  const navigation = useNavigation<any>();
 
-    );
-}
+  return (
+    <View style={styles.container}>
+      <Text style={styles.title}>Spiel beendet</Text>
+
+      <Text style={styles.text}>
+        Das Wort wurde erraten von
+      </Text>
+
+      <Text style={styles.playerName}>
+        {guessedBy}
+      </Text>
+
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity
+          style={styles.buttonPrimary}
+          onPress={() => navigation.navigate("LobbyUser")}
+        >
+          <Text style={styles.buttonText}>Zurück zur Lobby</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.buttonSecondary}
+          onPress={() => navigation.navigate("index")}
+        >
+          <Text style={styles.buttonText}>Zurück zum Menü</Text>
+        </TouchableOpacity>
+      </View>
+    </View>
+  );
+};
+
+export default Finish;
 
 const styles = StyleSheet.create({
-    topContainer: {
-        alignSelf: "center",
-        padding: 20,
-        backgroundColor: '#FFFFFF'
-    },
-    topText: {
-        fontSize: 24,
-        textAlign: "center",
-    },
-    content: {
-        flex: 1,
-        paddingBottom: 300,
-        backgroundColor: '#FFFFFF'
-    },
-    bottomContainer: {
-        position: "absolute",
-        backgroundColor: "#FFFFFF",
-        top: 640,
-        bottom: 0,
-        left: 0,
-        right: 0,
-    },
-    begriff: {
-        color: '#2b9bb8'
-    },
-    playerContainer: {
-        alignSelf: "center",
-        margin: 10,
-        height: 50,
-        width: 300,
-        backgroundColor: 'lightblue',
-        borderRadius: 25,
-    },
-    baseText: {
-        alignSelf: "flex-start",
-        fontSize: 30,
-        marginTop: 3,
-        marginLeft: 20,
-    },
-    playAgainContainer: {
-        alignSelf: "center",
-        verticalAlign: "bottom",
-        justifyContent: "center",
-        margin: 10,
-        height: 70,
-        width: 340,
-        backgroundColor: "#26b33b",
-        borderRadius: 20,
-    },
-    playAgainText: {
-        alignSelf: "center",
-        fontSize: 32,
-    }
+  container: {
+    flex: 1,
+    backgroundColor: "#ffffff",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: 24,
+  },
+  title: {
+    fontSize: 32,
+    fontWeight: "bold",
+    marginBottom: 20,
+  },
+  text: {
+    fontSize: 18,
+    marginBottom: 8,
+  },
+  playerName: {
+    fontSize: 26,
+    fontWeight: "bold",
+    color: "#4CAF50",
+    marginBottom: 40,
+  },
+  buttonContainer: {
+    width: "100%",
+    gap: 16,
+  },
+  buttonPrimary: {
+    backgroundColor: "#4CAF50",
+    paddingVertical: 14,
+    borderRadius: 10,
+    alignItems: "center",
+  },
+  buttonSecondary: {
+    backgroundColor: "#2196F3",
+    paddingVertical: 14,
+    borderRadius: 10,
+    alignItems: "center",
+  },
+  buttonText: {
+    color: "#ffffff",
+    fontSize: 18,
+    fontWeight: "600",
+  },
 });
