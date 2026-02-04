@@ -81,7 +81,7 @@ export default function LobbyHost() {
                             onPress={confirmHost}
                         >
                             <Text style={styles.primaryButtonText}>
-                                Als Host beitreten
+                                Lobby erstellen
                             </Text>
                         </TouchableOpacity>
                     </View>
