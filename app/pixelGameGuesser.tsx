@@ -10,16 +10,21 @@ import {
     View
 } from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import {useRouter} from 'expo-router' ;
 
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import {useTimer} from '../hooks/Timer';
 
 export default function PixelGuesserScreen() {
 
+    const router = useRouter();
     const timeLeft = useTimer(60);
 
     React.useEffect(()=>{
         fakePlayerDrawing(timeLeft);
+        if(timeLeft==0){
+            router.navigate('./finish')
+        }
     },[timeLeft]);
 
     const [guess, onGuessText] = useState('');

@@ -1,10 +1,18 @@
 import React, {useState} from 'react';
 import {ScrollView, StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import {useTimer} from '../hooks/Timer';
+import {useRouter} from 'expo-router';
 
 export default function PixelPixlerScreen() {
 
+    const router = useRouter();
     const timeLeft = useTimer(60);
+
+    React.useEffect(() => {
+       if(timeLeft==0){
+           router.navigate('./finish')
+       }
+    }, [timeLeft]);
 
     const playerName = 'Peter';
     const [selectedColor, setSelectedColor] = useState('#000000');
