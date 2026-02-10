@@ -37,7 +37,7 @@ export default function PixelPixlerScreen() {
     return (
         <ScrollView contentContainerStyle={styles.container}>
             <View>
-                <Text style={styles.title}>Runde 1</Text>
+                <Text style={styles.title}>Runde 1/1</Text>
             </View>
             <View style={[styles.headerRow]}>
                 <Text style={styles.title}>{playerName} pixle <Text style={styles.begriff}>Apfel </Text>!</Text>

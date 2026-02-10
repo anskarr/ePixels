@@ -44,10 +44,6 @@ export default function PixelGuesserScreen() {
         });
     };
 
-    function checkCorrectGuess (currentGuess:string):boolean {
-        return currentGuess === "Apfel" || currentGuess === "apfel";
-    }
-
     //Pico-8 Palette
     const colors = ['#008751','#ff003d','#fff1e8'];
     //Funktion soll malen anderer Spieler vortäuschen
@@ -150,7 +146,7 @@ export default function PixelGuesserScreen() {
             >
                 <View style={styles.innerContainer}>
                     <View>
-                        <Text style={styles.title}>Runde 1</Text>
+                        <Text style={styles.title}>Runde 1/1</Text>
                     </View>
                     <View style={[styles.containerRow, {flexDirection: 'row'}]}>
                         <Text style={styles.title}>Errate das Bild!</Text>
