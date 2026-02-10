@@ -18,7 +18,7 @@ export default function Options() {
                         style={{width: 250, height: 64}}
                         minimumValue={0}
                         maximumValue={1}
-                        minimumTrackTintColor="#FFFFFF"
+                        minimumTrackTintColor="#000000"
                         maximumTrackTintColor="#000000"
                     />
                 </View>
@@ -28,16 +28,15 @@ export default function Options() {
                         style={{width: 250, height: 64}}
                         minimumValue={0}
                         maximumValue={1}
-                        minimumTrackTintColor="#FFFFFF"
+                        minimumTrackTintColor="#000000"
                         maximumTrackTintColor="#000000"
                     />
                 </View>
                 <Text style={styles.titleText}>Impressum</Text>
                 <Text style={styles.bodyText}>
-                    Lorem ipsum dolor sit amet,
-                    consetetur sadipscing elitr,
-                    sed diam nonumy eirmod tempor invidunt ut
-                    labore et dolore magna aliquyam
+                    Team F {'\n'}{'\n'}
+                    Interaktive Systeme{'\n'}im Wintersemester 2025/26 {'\n'}{'\n'}
+                    Hochschule für Angewandte Wissenschaften Hamburg
                 </Text>
             </ScrollView>
 

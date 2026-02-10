@@ -1,4 +1,6 @@
 import React, {useState} from "react";
+import {Ionicons} from '@expo/vector-icons';
+import FontAwesome6 from '@expo/vector-icons/FontAwesome6'
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {
     View,
@@ -34,7 +36,7 @@ export default function HomeScreen() {
         }
     };
 
-    const onBurger = () => {
+    const onSettings = () => {
         router.navigate('/options');
     };
 
@@ -51,16 +53,10 @@ export default function HomeScreen() {
                 enableOnAndroid={true}
             >
                 <StatusBar barStyle="dark-content"/>
-                {/* Top line + burger */}
                 <View style={styles.topRow}>
-                    <TouchableOpacity
-                        onPress={onBurger}
-                        accessibilityLabel="Burger Menü"
-                        style={styles.burgerTouchable}
-                    >
-                        <View style={styles.burgerLine}/>
-                        <View style={[styles.burgerLine, {marginTop: 6}]}/>
-                        <View style={[styles.burgerLine, {marginTop: 6}]}/>
+                    <TouchableOpacity onPress={onSettings}
+                        accessibilityLabel="Settings">
+                        <Ionicons name="settings" size={40} color="#444444"/>
                     </TouchableOpacity>
                 </View>
 
@@ -141,7 +137,7 @@ const styles = StyleSheet.create({
         height: 48,
         flexDirection: "row",
         alignItems: "center",
-        paddingHorizontal: 12,
+        paddingHorizontal: 10,
     },
     topLine: {
         flex: 1,
