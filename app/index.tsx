@@ -27,7 +27,11 @@ export default function HomeScreen() {
     };
 
     const onJoinRoom = () => {
-        router.navigate('./LobbyUser');
+        if (!lobbyCode){
+            alert("Bitte Gültigen Raum Code eingeben")
+        }else{
+            router.navigate('./LobbyUser');
+        }
     };
 
     const onBurger = () => {
@@ -110,9 +114,12 @@ export default function HomeScreen() {
                         />
                     </View>
 
-                    {/* Privaten Raum beitreten (blau) */}
+                    {/* Freunden beitreten (dynamic color) */}
                     <TouchableOpacity
-                        style={styles.blueButton}
+                        style={[
+                            styles.greyButton,
+                            lobbyCode.trim().length > 0 && styles.blueButton // Overwrites grey if code exists
+                        ]}
                         onPress={onJoinRoom}
                         accessibilityRole="button"
                         accessibilityLabel="Freunden beitreten"
@@ -217,6 +224,17 @@ const styles = StyleSheet.create({
         minWidth: 180,
         height: 40,
         backgroundColor: "#1aa0c4",
+        borderRadius: 12,
+        justifyContent: "center",
+        alignItems: "center",
+        marginBottom: "15%",
+        paddingHorizontal: 10,
+    },
+    greyButton: {
+        width: Math.min(width - 80, 360),
+        minWidth: 180,
+        height: 40,
+        backgroundColor: "#8d8787",
         borderRadius: 12,
         justifyContent: "center",
         alignItems: "center",

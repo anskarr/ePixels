@@ -65,7 +65,7 @@ export default function LobbyHost() {
                     </TouchableOpacity>
                 </View>
 
-                <Text style={styles.title}>Raum</Text>
+                <Text style={styles.title}>Dein Raum</Text>
 
                 {!hostJoined ? (
                     <View style={styles.centerBox}>

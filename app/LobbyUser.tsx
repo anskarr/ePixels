@@ -60,7 +60,7 @@ export default function LobbyUser() {
                 </TouchableOpacity>
             </View>
 
-            <Text style={styles.title}>Raum</Text>
+            <Text style={styles.title}>Karstens Raum</Text>
 
             {!joined ? (
                 <View style={styles.centerBox}>
