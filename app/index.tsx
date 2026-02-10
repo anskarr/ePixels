@@ -85,26 +85,26 @@ export default function HomeScreen() {
                         <Text style={styles.playText}>Zufälliges Spiel</Text>
                     </TouchableOpacity>
 
-                    {/* Privaten Raum erstellen (blau) */}
+                    {/* Raum erstellen (blau) */}
                     <TouchableOpacity
                         style={styles.blueButton}
                         onPress={onCreateRoom}
                         accessibilityRole="button"
-                        accessibilityLabel="Privaten Raum erstellen"
+                        accessibilityLabel="Raum erstellen"
                     >
-                        <Text style={styles.blueButtonText}>Privaten Raum erstellen</Text>
+                        <Text style={styles.blueButtonText}>Raum erstellen</Text>
                     </TouchableOpacity>
 
                     {/* Lobby Code Label + Input */}
                     <View style={styles.lobbyRow}>
                         <Text style={styles.hash}>#</Text>
                         <TextInput
-                            style={[styles.textInput, styles.lobbyInput]}
-                            placeholder="Lobby Code"
+                            style={[styles.lobbyInput, styles.textInput]}
+                            placeholder="Raum Code"
                             placeholderTextColor="#222"
                             value={lobbyCode}
                             onChangeText={setLobbyCode}
-                            accessibilityLabel="Lobby Code"
+                            accessibilityLabel="Raum Code"
                             returnKeyType="done"
                             autoCapitalize="none"
                         />
@@ -115,9 +115,9 @@ export default function HomeScreen() {
                         style={styles.blueButton}
                         onPress={onJoinRoom}
                         accessibilityRole="button"
-                        accessibilityLabel="Privaten Raum beitreten"
+                        accessibilityLabel="Freunden beitreten"
                     >
-                        <Text style={styles.blueButtonText}>Privatem Raum beitreten</Text>
+                        <Text style={styles.blueButtonText}>Freunden beitreten</Text>
                     </TouchableOpacity>
                 </View>
             </KeyboardAwareScrollView>
@@ -237,7 +237,7 @@ const styles = StyleSheet.create({
         borderRadius: 12,
         justifyContent: "center",
         alignItems: "center",
-        marginTop: "1%",
+        marginTop: "5%",
         paddingHorizontal: 10,
         shadowColor: "#000",
         shadowOffset: {width: 0, height: 2},
@@ -252,7 +252,7 @@ const styles = StyleSheet.create({
     lobbyRow: {
         flexDirection: "row",
         alignItems: "center",
-        marginTop: "1%",
+        marginTop: "10%",
         marginBottom: "5%",
     },
     hash: {

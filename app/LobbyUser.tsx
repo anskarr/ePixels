@@ -26,8 +26,8 @@ export default function LobbyUser() {
     const joinLobby = () => {
         const name = myName.trim();
         if (!name) return Alert.alert("Bitte deinen Namen eingeben");
-        if (players.includes(name)) return Alert.alert("Name bereits in der Lobby");
-        if (players.length >= maxPlayers) return Alert.alert("Lobby ist voll");
+        if (players.includes(name)) return Alert.alert("Name bereits vergeben");
+        if (players.length >= maxPlayers) return Alert.alert("Raum ist voll");
 
         setPlayers(prev => [...prev, name]);
         setJoined(true);
@@ -37,8 +37,8 @@ export default function LobbyUser() {
     const addPlayer = () => {
         const name = newPlayerName.trim();
         if (!name) return Alert.alert("Bitte Namen für neuen Pixler eingeben");
-        if (players.length >= maxPlayers) return Alert.alert("Lobby ist voll");
-        if (players.includes(name)) return Alert.alert("Name bereits in der Lobby");
+        if (players.length >= maxPlayers) return Alert.alert("Raum ist voll");
+        if (players.includes(name)) return Alert.alert("Name bereits vergeben");
 
         setPlayers(prev => [...prev, name]);
         setNewPlayerName("");
@@ -60,7 +60,7 @@ export default function LobbyUser() {
                 </TouchableOpacity>
             </View>
 
-            <Text style={styles.title}>Lobby</Text>
+            <Text style={styles.title}>Raum</Text>
 
             {!joined ? (
                 <View style={styles.centerBox}>

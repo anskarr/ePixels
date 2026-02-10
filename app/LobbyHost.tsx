@@ -37,7 +37,7 @@ export default function LobbyHost() {
     const addPlayer = () => {
         const name = newPlayerName.trim();
         if (!name) return Alert.alert("Bitte Namen für neuen Pixler eingeben");
-        if (players.length >= maxPlayers) return Alert.alert("Lobby ist voll");
+        if (players.length >= maxPlayers) return Alert.alert("Raum ist voll");
         setPlayers(prev => [...prev, name]);
         setNewPlayerName("");
     };
@@ -65,7 +65,7 @@ export default function LobbyHost() {
                     </TouchableOpacity>
                 </View>
 
-                <Text style={styles.title}>Lobby</Text>
+                <Text style={styles.title}>Raum</Text>
 
                 {!hostJoined ? (
                     <View style={styles.centerBox}>
@@ -81,7 +81,7 @@ export default function LobbyHost() {
                             onPress={confirmHost}
                         >
                             <Text style={styles.primaryButtonText}>
-                                Lobby erstellen
+                                Raum erstellen
                             </Text>
                         </TouchableOpacity>
                     </View>
