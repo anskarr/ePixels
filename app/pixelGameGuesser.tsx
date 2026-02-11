@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {Ionicons} from '@expo/vector-icons';
 import {
     FlatList,
     KeyboardAvoidingView,
@@ -7,7 +8,8 @@ import {
     Text,
     TextInput,
     TouchableOpacity,
-    View
+    View,
+    Modal
 } from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {useRouter} from 'expo-router' ;
@@ -132,18 +134,93 @@ export default function PixelGuesserScreen() {
 
     const addGuess = () => {
         const newGuess = guess.trim();
+        if(newGuess.equals("Apfel")) => {//play sound};
         if (!newGuess) return // nichts tun wenn leer
         onGuessEnter(prev => [newGuess, ...prev]);
         onGuessText("");
     };
 
+    const [menuVisible, setMenuVisible] = useState(false);
+
+    const [modalView, setModalView] = useState('menu');
+
+    const openMenu = () => {
+        setModalView('menu');
+        setMenuVisible(true);
+    };
+
+    const handleLeaveRoom = () => {
+        setMenuVisible(false);
+        router.dismissAll(); // Oder router.replace('/'), je nach Struktur
+        router.navigate('/');
+    };
+
     return (
         <SafeAreaView style={styles.safeArea}>
+            <View style={styles.settingsIcon}>
+                <TouchableOpacity onPress={() => setMenuVisible(true)}>
+                    <Ionicons name="settings" size={40}/>
+                </TouchableOpacity>
+            </View>
             <KeyboardAvoidingView
                 behavior={Platform.OS === "android" ? "padding" : "height"}
                 style={styles.container}
                 keyboardVerticalOffset={Platform.OS === "android" ? 100 : 0}
             >
+
+                        <Modal
+                            animationType="fade"
+                            transparent={true}
+                            visible={menuVisible}
+                            onRequestClose={() => setMenuVisible(false)}>
+                            <View style={styles.modalOverlay}>
+                                <View style={styles.modalContent}>
+                                {modalView === 'menu' && (
+                                    <>
+                                        <Text style={styles.modalTitle}>Optionen</Text>
+
+                                        <TouchableOpacity style={[styles.menuItem, styles.closeButton]} onPress={() => setMenuVisible(false)}>
+                                            <Text style={styles.closeButtonText}>Weiterspielen</Text>
+                                        </TouchableOpacity>
+
+                                        <TouchableOpacity style={[styles.menuItem, styles.closeButton]} onPress={() => {router.navigate('/tutorial')}}>
+                                            <Text style={styles.closeButtonText}>Tutorial</Text>
+                                        </TouchableOpacity>
+
+                                        <TouchableOpacity style={[styles.menuItem, styles.leaveButton]} onPress={() => setModalView('confirm')} >
+                                            <Text style={styles.closeButtonText}>Zurück zum Hauptmenü</Text>
+                                        </TouchableOpacity>
+                                    </>
+                                )}
+                                {modalView === 'confirm' && (
+                                    <>
+                                        <Text style={styles.modalTitle}>Bist du sicher?</Text>
+                                        <Text style={styles.warningText}>
+                                            Wenn du die Runde verlässt, kannst du nicht wieder beitreten.
+                                        </Text>
+
+                                        {/* Option 1: Weiterspielen (Zurück zum Spiel oder zurück zu Optionen) */}
+                                        <TouchableOpacity
+                                            style={[styles.menuItem, styles.closeButton]}
+                                            onPress={() => setModalView('menu')} // Schließt Modal direkt
+                                            // Alternativ: onPress={() => setModalView('menu')} // Geht zurück zu Optionen
+                                        >
+                                            <Text style={styles.closeButtonText}>Weiterspielen</Text>
+                                        </TouchableOpacity>
+
+                                        {/* Option 2: Wirklich verlassen */}
+                                        <TouchableOpacity
+                                            style={[styles.menuItem, styles.leaveButton]}
+                                            onPress={handleLeaveRoom}
+                                        >
+                                            <Text style={styles.closeButtonText}>Runde verlassen</Text>
+                                        </TouchableOpacity>
+                                    </>
+                                )}
+
+                                </View>
+                            </View>
+                        </Modal>
                 <View style={styles.innerContainer}>
                     <View>
                         <Text style={styles.title}>Runde 1/1</Text>
@@ -204,13 +281,79 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#ffffff',
     },
+    settingsIcon: {
+        position: 'absolute',
+        top: 12,
+        left: 12},
+    headerRow: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    modalOverlay: {
+        flex: 1,
+        backgroundColor: 'rgba(0,0,0,0.5)', // Dunkelt den Hintergrund ab
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    modalContent: {
+        width: '80%',
+        backgroundColor: 'white',
+        borderRadius: 20,
+        padding: 25,
+        alignItems: 'center',
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+        elevation: 5,
+    },
+    modalTitle: {
+        fontSize: 28,
+        fontWeight: 'bold',
+        marginBottom: 20,
+    },
+    menuItem: {
+        width: '100%',
+        padding: 15,
+        borderBottomWidth: 1,
+        borderBottomColor: '#eee',
+        alignItems: 'center',
+    },
+    menuText: {
+        fontSize: 24,
+    },
+    closeButton: {
+        marginTop: 20,
+        backgroundColor: '#2b9bb8',
+        borderRadius: 10,
+        borderBottomWidth: 0,
+    },
+    closeButtonText: {
+        fontSize: 24,
+        color: 'black',
+        fontWeight: 'bold',
+        textAlign: 'center',
+    },
+    leaveButton: {
+        marginTop: 20,
+        backgroundColor: '#ff8000',
+        borderRadius: 10,
+        borderBottomWidth: 0,
+    },
+    warningText: {
+        fontSize: 22,
+        textAlign: 'center',
+        marginBottom: 25,
+        color: '#555',
+        lineHeight: 22, // Bessere Lesbarkeit bei zwei Zeilen
+    },
     container: {
         flex: 1,
     },
     innerContainer: {
         flex: 1,
         alignItems: 'center',
-        paddingVertical: 5,
+        paddingVertical: 10, //5
         justifyContent: 'flex-end',
     },
     containerRow: {

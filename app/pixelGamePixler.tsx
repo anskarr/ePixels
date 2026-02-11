@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
-import {ScrollView, StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+import {Ionicons} from '@expo/vector-icons';
+import {ScrollView, StyleSheet, Text, View, TouchableOpacity, Modal} from 'react-native';
 import {useTimer} from '../hooks/Timer';
 import {useRouter} from 'expo-router';
 
@@ -34,13 +35,89 @@ export default function PixelPixlerScreen() {
         ['#ff003d', '#ffa300', '#ffec27', '#00e436', '#29adff', '#83769c', '#ff77a8', '#ffccaa']
     ];
 
+    const [menuVisible, setMenuVisible] = useState(false);
+
+    const [modalView, setModalView] = useState('menu');
+
+    const openMenu = () => {
+        setModalView('menu');
+        setMenuVisible(true);
+    };
+
+    const handleLeaveRoom = () => {
+        setMenuVisible(false);
+        router.dismissAll(); // Oder router.replace('/'), je nach Struktur
+        router.navigate('/');
+    };
+
     return (
         <ScrollView contentContainerStyle={styles.container}>
-            <View>
+
+            <View style={styles.settingsIcon}>
+                <TouchableOpacity onPress={() => setMenuVisible(true)}>
+                    <Ionicons name="settings" size={40}/>
+                </TouchableOpacity>
+            </View>
+
+            <Modal
+                animationType="fade"
+                transparent={true}
+                visible={menuVisible}
+                onRequestClose={() => setMenuVisible(false)}>
+                <View style={styles.modalOverlay}>
+                    <View style={styles.modalContent}>
+                    {modalView === 'menu' && (
+                        <>
+                            <Text style={styles.modalTitle}>Optionen</Text>
+
+                            <TouchableOpacity style={[styles.menuItem, styles.closeButton]} onPress={() => setMenuVisible(false)}>
+                                <Text style={styles.closeButtonText}>Weiterspielen</Text>
+                            </TouchableOpacity>
+
+                            <TouchableOpacity style={[styles.menuItem, styles.closeButton]} onPress={() => {router.navigate('/tutorial')}}>
+                                <Text style={styles.closeButtonText}>Tutorial</Text>
+                            </TouchableOpacity>
+
+                            <TouchableOpacity style={[styles.menuItem, styles.leaveButton]} onPress={() => setModalView('confirm')} >
+                                <Text style={styles.closeButtonText}>Zurück zum Hauptmenü</Text>
+                            </TouchableOpacity>
+                        </>
+                    )}
+                    {modalView === 'confirm' && (
+                        <>
+                            <Text style={styles.modalTitle}>Bist du sicher?</Text>
+                            <Text style={styles.warningText}>
+                                Wenn du die Runde verlässt, kannst du nicht wieder beitreten.
+                            </Text>
+
+                            {/* Option 1: Weiterspielen (Zurück zum Spiel oder zurück zu Optionen) */}
+                            <TouchableOpacity
+                                style={[styles.menuItem, styles.closeButton]}
+                                onPress={() => setModalView('menu')} // Schließt Modal direkt
+                                // Alternativ: onPress={() => setModalView('menu')} // Geht zurück zu Optionen
+                            >
+                                <Text style={styles.closeButtonText}>Weiterspielen</Text>
+                            </TouchableOpacity>
+
+                            {/* Option 2: Wirklich verlassen */}
+                            <TouchableOpacity
+                                style={[styles.menuItem, styles.leaveButton]}
+                                onPress={handleLeaveRoom}
+                            >
+                                <Text style={styles.closeButtonText}>Runde verlassen</Text>
+                            </TouchableOpacity>
+                        </>
+                    )}
+
+                    </View>
+                </View>
+            </Modal>
+
+            <View style={styles.headerRow}>
                 <Text style={styles.title}>Runde 1/1</Text>
             </View>
-            <View style={[styles.headerRow]}>
-                <Text style={styles.title}>{playerName} pixle <Text style={styles.begriff}>Apfel </Text>!</Text>
+            <View style={[styles.wordRow]}>
+                <Text style={styles.title}>{playerName}, pixle <Text style={styles.begriff}>Apfel </Text>!</Text>
                 <View style={styles.timerBubble}>
                     <Text style={styles.timerText}>{timeLeft}s</Text>
                 </View>
@@ -110,7 +187,78 @@ const styles = StyleSheet.create({
     begriff: {
         color: '#2b9bb8'
     },
+    settingsIcon: {
+        position: 'absolute',
+        top: 2,
+        left: 12},
     headerRow: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    modalOverlay: {
+        flex: 1,
+        backgroundColor: 'rgba(0,0,0,0.5)', // Dunkelt den Hintergrund ab
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    modalContent: {
+        width: '80%',
+        backgroundColor: 'white',
+        borderRadius: 20,
+        padding: 25,
+        alignItems: 'center',
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+        elevation: 5,
+    },
+    modalTitle: {
+        fontSize: 28,
+        fontWeight: 'bold',
+        marginBottom: 20,
+    },
+    menuItem: {
+        width: '100%',
+        padding: 15,
+        borderBottomWidth: 1,
+        borderBottomColor: '#eee',
+        alignItems: 'center',
+    },
+    menuText: {
+        fontSize: 24,
+    },
+    closeButton: {
+        marginTop: 20,
+        backgroundColor: '#2b9bb8',
+        borderRadius: 10,
+        borderBottomWidth: 0,
+    },
+    closeButtonText: {
+        fontSize: 24,
+        color: 'black',
+        fontWeight: 'bold',
+        textAlign: 'center',
+    },
+    leaveButton: {
+        marginTop: 20,
+        backgroundColor: '#ff8000',
+        borderRadius: 10,
+        borderBottomWidth: 0,
+    },
+    warningText: {
+        fontSize: 22,
+        textAlign: 'center',
+        marginBottom: 25,
+        color: '#555',
+        lineHeight: 22, // Bessere Lesbarkeit bei zwei Zeilen
+    },
+//     menuContent: {
+//             alignItems: "center",
+//             textAlignVertical: "center",
+//             paddingHorizontal: 28,
+//         },
+    wordRow: {
         flexDirection: 'row',
         alignItems: 'center'
     },

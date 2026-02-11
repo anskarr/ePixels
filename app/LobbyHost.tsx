@@ -61,7 +61,7 @@ export default function LobbyHost() {
                 {/* Header */}
                 <View style={styles.header}>
                     <TouchableOpacity onPress={() => router.back()}>
-                        <Ionicons name="arrow-back-outline" size={64} style={{padding: 10}}/>
+                        <Ionicons name="arrow-back-outline" size={48} style={{padding: 10}}/>
                     </TouchableOpacity>
                 </View>
 
@@ -154,14 +154,17 @@ export default function LobbyHost() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        paddingTop: 40,
+        paddingTop: 0,
         alignItems: "center",
-        backgroundColor: "#FFFFFF",
-        paddingBottom: 60, // room for keyboard
+        backgroundColor: "#FFFFFF"
     },
-    header: {width: "90%", alignItems: "flex-start"},
-    leave: {color: "#1aa0c4", fontSize: 16},
-
+    header: {
+        width: "100%",
+        alignItems: "flex-start",
+        flexDirection: "row",
+        justifyContent: "flex-start",
+        paddingHorizontal: 2,
+    },
     title: {
         fontSize: 28,
         fontWeight: "700",

@@ -18,6 +18,8 @@ export default function LobbyUser() {
 
     const [players, setPlayers] = useState<string[]>(["Karsten (Host)"]);
 
+    const [lobbyName, setLobbyName] = useState("Zufälliger Raum");
+
     const [myName, setMyName] = useState("");
     const [joined, setJoined] = useState(false);
 
@@ -32,6 +34,7 @@ export default function LobbyUser() {
         setPlayers(prev => [...prev, name]);
         setJoined(true);
         setMyName("");
+        setLobbyName("Karstens Raum");
     };
 
     const addPlayer = () => {
@@ -56,13 +59,14 @@ export default function LobbyUser() {
             {/* Header */}
             <View style={styles.header}>
                 <TouchableOpacity onPress={() => router.back()}>
-                    <Ionicons name="arrow-back-outline" size={64} style={{padding: 10}}/>
+                    <Ionicons name="arrow-back-outline" size={48} style={{padding: 10}}/>
                 </TouchableOpacity>
             </View>
 
-            <Text style={styles.title}>Karstens Raum</Text>
+            <Text style={styles.title}>{lobbyName}</Text>
 
             {!joined ? (
+
                 <View style={styles.centerBox}>
                     <TextInput
                         placeholder="Dein Name"
@@ -135,22 +139,21 @@ export default function LobbyUser() {
         </KeyboardAvoidingView>
     );
 }
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        paddingTop: 40,
+        paddingTop: 0,
         alignItems: "center",
         backgroundColor: "#FFFFFF"
     },
     header: {
-        width: "90%",
-        alignItems: "flex-start"
+        width: "100%",
+        alignItems: "flex-start",
+        flexDirection: "row",
+        justifyContent: "flex-start",
+        paddingHorizontal: 2,
     },
-    leave: {
-        color: "#1aa0c4",
-        fontSize: 16
-    },
-
     title: {
         fontSize: 28,
         fontWeight: "700",

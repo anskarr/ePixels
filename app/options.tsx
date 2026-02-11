@@ -9,7 +9,7 @@ export default function Options() {
     return (
         <ScrollView style={styles.safe}>
             <TouchableOpacity onPress={() => router.back()}>
-                <Ionicons name="arrow-back-outline" size={64} style={{padding: 10,}}/>
+                <Ionicons name="arrow-back-outline" size={48} style={{padding: 10,}}/>
             </TouchableOpacity>
             <ScrollView>
                 <View style={styles.sliderContainer}>

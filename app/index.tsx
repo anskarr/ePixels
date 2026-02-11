@@ -30,7 +30,7 @@ export default function HomeScreen() {
 
     const onJoinRoom = () => {
         if (!lobbyCode){
-            alert("Bitte Gültigen Raum Code eingeben")
+            alert("Bitte gültigen Raum-Code eingeben.")
         }else{
             router.navigate('./LobbyUser');
         }
@@ -56,7 +56,7 @@ export default function HomeScreen() {
                 <View style={styles.topRow}>
                     <TouchableOpacity onPress={onSettings}
                         accessibilityLabel="Settings">
-                        <Ionicons name="settings" size={40} color="#444444"/>
+                        <Ionicons name="settings" size={40}/>
                     </TouchableOpacity>
                 </View>
 
@@ -75,7 +75,6 @@ export default function HomeScreen() {
                         <Text style={styles.redButtonText}>Tutorial</Text>
                     </TouchableOpacity>
 
-                    {/* PLAY button (grün) */}
                     <TouchableOpacity
                         style={styles.playButton}
                         onPress={onPlay}
@@ -85,7 +84,6 @@ export default function HomeScreen() {
                         <Text style={styles.playText}>Zufälliges Spiel</Text>
                     </TouchableOpacity>
 
-                    {/* Raum erstellen (blau) */}
                     <TouchableOpacity
                         style={styles.blueButton}
                         onPress={onCreateRoom}
@@ -95,7 +93,6 @@ export default function HomeScreen() {
                         <Text style={styles.blueButtonText}>Raum erstellen</Text>
                     </TouchableOpacity>
 
-                    {/* Lobby Code Label + Input */}
                     <View style={styles.lobbyRow}>
                         <Text style={styles.hash}>#</Text>
                         <TextInput
@@ -134,33 +131,12 @@ const styles = StyleSheet.create({
         backgroundColor: "#fff",
     },
     topRow: {
-        height: 48,
-        flexDirection: "row",
-        alignItems: "center",
-        paddingHorizontal: 10,
+        height: 50,
+        flexDirection: "flex-start",
+        alignItems: "marginRight",
+        paddingHorizontal: 16,
+        paddingTop: 12,
     },
-    topLine: {
-        flex: 1,
-        height: 3,
-        backgroundColor: "#2fa6e6", // dünne blaue Linie oben
-        alignSelf: "flex-start",
-        marginTop: 6,
-        borderRadius: 2,
-    },
-    burgerTouchable: {
-        width: 40,
-        height: 40,
-        justifyContent: "center",
-        alignItems: "center",
-        marginLeft: 8,
-    },
-    burgerLine: {
-        width: 24,
-        height: 3,
-        backgroundColor: "#000",
-        borderRadius: 2,
-    },
-
     header: {
         alignItems: "center",
         marginTop: 10,
