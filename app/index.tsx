@@ -13,6 +13,7 @@ import {
     KeyboardAvoidingView,
 } from "react-native";
 import {useRouter} from 'expo-router';
+import { GameButton } from '../components/GameButton';
 
 const {width} = Dimensions.get("window");
 
@@ -54,44 +55,43 @@ export default function HomeScreen() {
             >
                 <StatusBar barStyle="dark-content"/>
                 <View style={styles.topRow}>
-                    <TouchableOpacity onPress={onSettings}
+                    <GameButton onPress={onSettings} style={{alignItems: "flex-start"}}
                         accessibilityLabel="Settings">
                         <Ionicons name="settings" size={40}/>
-                    </TouchableOpacity>
+                    </GameButton>
                 </View>
 
-                {/* Logo / Titel */}
                 <View style={styles.header}>
                     <Text style={styles.logo}>epiXels</Text>
                 </View>
 
                 <View style={styles.content}>
-                    <TouchableOpacity
+                    <GameButton
                         style={styles.redButton}
                         onPress={onTutorial}
                         accessibilityRole="button"
                         accessibilityLabel="Tutorial ansehen"
                     >
                         <Text style={styles.redButtonText}>Tutorial</Text>
-                    </TouchableOpacity>
+                    </GameButton>
 
-                    <TouchableOpacity
+                    <GameButton
                         style={styles.playButton}
                         onPress={onPlay}
                         accessibilityRole="button"
                         accessibilityLabel="Play"
                     >
                         <Text style={styles.playText}>Zufälliges Spiel</Text>
-                    </TouchableOpacity>
+                    </GameButton>
 
-                    <TouchableOpacity
+                    <GameButton
                         style={styles.blueButton}
                         onPress={onCreateRoom}
                         accessibilityRole="button"
                         accessibilityLabel="Raum erstellen"
                     >
                         <Text style={styles.blueButtonText}>Raum erstellen</Text>
-                    </TouchableOpacity>
+                    </GameButton>
 
                     <View style={styles.lobbyRow}>
                         <Text style={styles.hash}>#</Text>
@@ -107,8 +107,8 @@ export default function HomeScreen() {
                         />
                     </View>
 
-                    {/* Freunden beitreten (dynamic color) */}
-                    <TouchableOpacity
+
+                    <GameButton
                         style={[
                             styles.greyButton,
                             lobbyCode.trim().length > 0 && styles.blueButton // Overwrites grey if code exists
@@ -118,7 +118,7 @@ export default function HomeScreen() {
                         accessibilityLabel="Freunden beitreten"
                     >
                         <Text style={styles.blueButtonText}>Freunden beitreten</Text>
-                    </TouchableOpacity>
+                    </GameButton>
                 </View>
             </KeyboardAwareScrollView>
         </KeyboardAvoidingView>

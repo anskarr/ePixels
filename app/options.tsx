@@ -32,7 +32,7 @@ export default function Options() {
                         maximumTrackTintColor="#000000"
                     />
                 </View>
-                <Text style={styles.titleText}>Impressum</Text>
+                <Text style={styles.titleText}>Impressum:</Text>
                 <Text style={styles.bodyText}>
                     Team F {'\n'}{'\n'}
                     Interaktive Systeme{'\n'}im Wintersemester 2025/26 {'\n'}{'\n'}
