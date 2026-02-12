@@ -134,7 +134,6 @@ export default function PixelGuesserScreen() {
 
     const addGuess = () => {
         const newGuess = guess.trim();
-        if(newGuess.equals("Apfel")) => {//play sound};
         if (!newGuess) return // nichts tun wenn leer
         onGuessEnter(prev => [newGuess, ...prev]);
         onGuessText("");
